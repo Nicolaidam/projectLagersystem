@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LagerSystem", "LagerSystem\LagerSystem.csproj", "{76A54BC5-0A8B-4837-AB69-4A1542DE37EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76A54BC5-0A8B-4837-AB69-4A1542DE37EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A54BC5-0A8B-4837-AB69-4A1542DE37EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A54BC5-0A8B-4837-AB69-4A1542DE37EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A54BC5-0A8B-4837-AB69-4A1542DE37EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {815953D5-581A-4A68-939B-48C894EF775C}
+	EndGlobalSection
+EndGlobal
