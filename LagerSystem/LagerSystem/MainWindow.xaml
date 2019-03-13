@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:LagerSystem"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Button 
         
-    </Grid>
+        Content="Login&#xD;&#xA;" HorizontalAlignment="Left" Margin="339,311,0,0" VerticalAlignment="Top" Width="163" Height="56" Click="Button_Click"/>
+
 </Window>
+    

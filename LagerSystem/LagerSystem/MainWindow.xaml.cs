@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
 
 namespace LagerSystem
 {
@@ -23,6 +24,14 @@ namespace LagerSystem
         public MainWindow()
         {
             InitializeComponent();
+          
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 win2 = new Window1();
+            win2.Show();
+            this.Close();
         }
     }
 }
