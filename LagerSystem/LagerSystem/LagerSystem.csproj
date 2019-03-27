@@ -90,6 +90,10 @@
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Items typer\Mobil.cs" />
+    <Compile Include="Model\Items typer\PC.cs" />
+    <Compile Include="Model\Items typer\PCDele.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -136,5 +140,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
