@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using LagerSystem.Model;
+using System.ComponentModel;
 
 namespace LagerSystem
 {
@@ -22,11 +25,14 @@ namespace LagerSystem
         public Main()
         {
             InitializeComponent();
-        }
+            ObservableCollection<Item> employees = new ObservableCollection<Item>();
+            employees.Add(new Item { Afdeling = "670", Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123});
+            employees.Add(new Item { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            employees.Add(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            myDataGrid.ItemsSource = employees;
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+
+           
         }
-    }
-}
+    } }
