@@ -95,33 +95,60 @@ namespace LagerSystem
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //TODO lav verifisering af brugernavn og password
-
-            String inputBrugernavn, inputPassword, dbBrugernavn, dbPassword;
-
-            inputBrugernavn = textboxBrugernavn.Text;
-            inputPassword = textboxPassword.Password;
-
-
-            dbBrugernavn = getBrugernavn(inputPassword);
-            dbPassword = getPassword(inputBrugernavn);
-
-
-            Console.WriteLine(inputBrugernavn);
-            Console.WriteLine(inputPassword);
-            Console.WriteLine(dbBrugernavn);
-            Console.WriteLine(dbPassword);
-
-            if (inputBrugernavn.Equals(dbBrugernavn) && inputPassword.Equals(dbPassword))
+            if (hh.IsChecked == true)
             {
-                Main h = new Main();
-                h.Show();
-                this.Hide();
+                //MessageBox.Show("DEN ER TRUE!");
+                String dbbBrugernavn, dbbPassword;
+
+                dbbBrugernavn = getBrugernavn("123456");
+                dbbPassword = getPassword("Johnny");
+                if ("Johnny".Equals(dbbBrugernavn) && "123456".Equals(dbbPassword))
+                {
+                    Main h = new Main();
+                    h.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Forkert login");
+                }
+
             }
             else
             {
-                MessageBox.Show("Forkert login");
+
+                String inputBrugernavn, inputPassword, dbBrugernavn, dbPassword;
+
+                inputBrugernavn = textboxBrugernavn.Text;
+                inputPassword = textboxPassword.Password;
+
+
+                dbBrugernavn = getBrugernavn(inputPassword);
+                dbPassword = getPassword(inputBrugernavn);
+
+
+                Console.WriteLine(inputBrugernavn);
+                Console.WriteLine(inputPassword);
+                Console.WriteLine(dbBrugernavn);
+                Console.WriteLine(dbPassword);
+
+                if (inputBrugernavn.Equals(dbBrugernavn) && inputPassword.Equals(dbPassword))
+                {
+                    Main h = new Main();
+                    h.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Forkert login");
+                }
             }
 
+
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
 
         }
     }

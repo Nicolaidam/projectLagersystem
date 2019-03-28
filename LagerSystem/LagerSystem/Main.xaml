@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LagerSystem"
         mc:Ignorable="d"
-        Title="Main" Height="450" Width="800" WindowState="Maximized">
+        Title="Main" Height="700" Width="900" WindowState="Maximized">
     <Grid>
-        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="True">
-        </DataGrid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <Button Content="Tilføj Item" HorizontalAlignment="Left" Margin="777,62,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button Content="Slet Item" HorizontalAlignment="Left" Margin="655,62,0,0" VerticalAlignment="Top" Width="74"/>
+        <CheckBox Content="Mobiler" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top" Height="34" Width="145"/>
+        <CheckBox Content="PC'er" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="518" Margin="104,9.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="713"/>
+
     </Grid>
+
 </Window>

@@ -13,5 +13,6 @@
         <Button Content="Login" HorizontalAlignment="Left" Margin="257,254,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <PasswordBox HorizontalAlignment="Left" Margin="257,186,0,0" VerticalAlignment="Top" Width="311" Height="25" Name="textboxPassword"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="257,69,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <CheckBox Content="Automatisk Login" HorizontalAlignment="Left" Margin="257,216,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Name="hh"/>
     </Grid>
 </Window>

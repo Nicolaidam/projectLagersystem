@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using LagerSystem.Model;
 using System.ComponentModel;
+using LagerSystem.Model.Items_typer;
 
 namespace LagerSystem
 {
@@ -27,7 +28,7 @@ namespace LagerSystem
             InitializeComponent();
             ObservableCollection<Item> employees = new ObservableCollection<Item>();
             employees.Add(new Item { Afdeling = "670", Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123});
-            employees.Add(new Item { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            employees.Add(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
             employees.Add(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
             myDataGrid.ItemsSource = employees;
 
