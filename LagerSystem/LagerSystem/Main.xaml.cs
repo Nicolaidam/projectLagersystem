@@ -26,14 +26,19 @@ namespace LagerSystem
         public Main()
         {
             InitializeComponent();
-            ObservableCollection<Item> employees = new ObservableCollection<Item>();
-            employees.Add(new Item { Afdeling = "670", Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123});
-            employees.Add(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
-            employees.Add(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
-            myDataGrid.ItemsSource = employees;
+            Logik logik = Logik.Instance;
+            logik.addItem(new Item { Afdeling = "670", Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            logik.addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            logik.addItem(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = 123 });
+            myDataGrid.ItemsSource = logik.AlleItems;
 
 
 
            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     } }
