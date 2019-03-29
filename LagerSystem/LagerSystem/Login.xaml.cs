@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LagerSystem.DAO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,14 +16,17 @@ using System.Windows.Shapes;
 
 namespace LagerSystem
 {
+
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
     public partial class Login : Window
     {
+        LoginDao loginDao = new LoginDaoImpl();
         public Login()
         {
             InitializeComponent();
+
         }
 
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
@@ -122,15 +126,10 @@ namespace LagerSystem
                 inputBrugernavn = textboxBrugernavn.Text;
                 inputPassword = textboxPassword.Password;
 
-
-                dbBrugernavn = getBrugernavn(inputPassword);
-                dbPassword = getPassword(inputBrugernavn);
-
-
-                Console.WriteLine(inputBrugernavn);
-                Console.WriteLine(inputPassword);
-                Console.WriteLine(dbBrugernavn);
-                Console.WriteLine(dbPassword);
+                //dbBrugernavn = getBrugernavn(inputPassword);
+                //dbPassword = getPassword(inputBrugernavn);
+                dbBrugernavn = loginDao.GetBrugernavn(inputPassword);
+                dbPassword = loginDao.GetPassword(inputBrugernavn);
 
                 if (inputBrugernavn.Equals(dbBrugernavn) && inputPassword.Equals(dbPassword))
                 {
@@ -151,5 +150,14 @@ namespace LagerSystem
         {
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //LoginDao hej = new LoginDaoImpl();
+            morten.Text = loginDao.GetBrugernavn("123456");
+        }
     }
 }
+
+
+
