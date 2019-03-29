@@ -12,11 +12,19 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
-        <Button Content="Tilføj Item" HorizontalAlignment="Left" Margin="777,62,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
-        <Button Content="Slet Item" HorizontalAlignment="Left" Margin="655,62,0,0" VerticalAlignment="Top" Width="74"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <CheckBox Content="Mobiler" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top" Height="34" Width="145"/>
         <CheckBox Content="PC'er" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="myDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="518" Margin="104,9.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="713"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,82.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Afdeling" VerticalAlignment="Top" Width="120" Name="afd"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,130.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ejer" VerticalAlignment="Top" Width="120" Name="ejer"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="191.5,29.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Name="combo" SelectionChanged="combo_SelectionChanged"/>
+        <Button Content="Opret" HorizontalAlignment="Left" Margin="210.5,320.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,168.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Mærke" VerticalAlignment="Top" Width="120" Name="maerke"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,213.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" Width="120" Name="model"/>
 
     </Grid>
 
