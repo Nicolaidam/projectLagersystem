@@ -16,15 +16,24 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <CheckBox Content="Mobiler" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top" Height="34" Width="145"/>
+        <CheckBox x:Name="mobiltjek" Content="Mobiler" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top" Height="34" Width="145" Click="mobiltjek_Click"/>
         <CheckBox Content="PC'er" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="518" Margin="104,9.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="713"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,82.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Afdeling" VerticalAlignment="Top" Width="120" Name="afd"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,130.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ejer" VerticalAlignment="Top" Width="120" Name="ejer"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="191.5,29.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Name="combo" SelectionChanged="combo_SelectionChanged"/>
-        <Button Content="Opret" HorizontalAlignment="Left" Margin="210.5,320.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,168.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Mærke" VerticalAlignment="Top" Width="120" Name="maerke"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="191.5,213.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" Width="120" Name="model"/>
+        <DataGrid x:Name="myDataGrid" IsReadOnly="True" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="518" Margin="104,9.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="713" SelectionChanged="myDataGrid_SelectionChanged" FontSize="14"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,56.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Afdeling" VerticalAlignment="Top" Width="120" Name="afd"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,108.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ejer" VerticalAlignment="Top" Width="120" Name="ejer"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="78.5,57.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" Name="combo" SelectionChanged="combo_SelectionChanged"/>
+        <Button Content="Opret" HorizontalAlignment="Left" Margin="210.5,427.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,108.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Mærke" VerticalAlignment="Top" Width="120" Name="maerke"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,165.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" Width="120" Name="model"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="145.5,9.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Opret nyt Item" VerticalAlignment="Top" Height="38" Width="141" FontSize="20"/>
+        <TextBox x:Name="lokation" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,165.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Lokation" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Pris" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,223.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Pris" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Note" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,223.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Note" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="mcA" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,274.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="MAC-adr." VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ram" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,274.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ram" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Processor" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,327.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Processor" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="grafikkort" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,327.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Grafik-kort" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="IMEI" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,375.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="iMEI" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 
