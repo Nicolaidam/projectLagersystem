@@ -17,7 +17,6 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <CheckBox x:Name="mobiltjek" Content="Mobiler" HorizontalAlignment="Left" Margin="30,26,0,0" VerticalAlignment="Top" Height="34" Width="145" Click="mobiltjek_Click"/>
-        <CheckBox Content="PC'er" HorizontalAlignment="Left" Margin="30,70,0,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="myDataGrid" IsReadOnly="True" AutoGenerateColumns="True" HorizontalAlignment="Left" Height="518" Margin="104,9.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="713" SelectionChanged="myDataGrid_SelectionChanged" FontSize="14"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,56.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Afdeling" VerticalAlignment="Top" Width="120" Name="afd"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,108.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Ejer" VerticalAlignment="Top" Width="120" Name="ejer"/>
@@ -34,6 +33,7 @@
         <TextBox x:Name="Processor" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,327.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Processor" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="grafikkort" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="78.5,327.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Grafik-kort" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="IMEI" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="249.5,375.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="iMEI" VerticalAlignment="Top" Width="120"/>
+        <CheckBox x:Name="pcchek" Content="PC" HorizontalAlignment="Left" Margin="30,65,0,0" VerticalAlignment="Top" Click="pcchek_Click"/>
 
     </Grid>
 

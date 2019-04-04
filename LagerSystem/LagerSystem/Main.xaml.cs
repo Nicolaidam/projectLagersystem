@@ -125,11 +125,13 @@ namespace LagerSystem
             if (combo.SelectedIndex == 0)
             {
                 Logik.Instance.addMobil(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, IMEI.Text, ram.Text);
+                MessageBox.Show("Mobil tilføjet!!!");
             }
             //pc
             if (combo.SelectedIndex == 1)
             {
                 Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, mcA.Text, ram.Text, Processor.Text, grafikkort.Text);
+                MessageBox.Show("PC tilføjet!!!");
             }
             //pc dele
             if (combo.SelectedIndex == 2)
@@ -154,11 +156,27 @@ namespace LagerSystem
         {
             if (mobiltjek.IsChecked == true)
             {
+                MessageBox.Show("Der vises kun mobiler!");
                 myDataGrid.ItemsSource = Logik.Instance.AlleMobiler;
             }
             if (mobiltjek.IsChecked == false)
             {
-                MessageBox.Show("Den er false igen!");
+                MessageBox.Show("Alt vises igen!");
+                myDataGrid.ItemsSource = Logik.Instance.AlleItems;
+            }
+           
+        }
+
+        private void pcchek_Click(object sender, RoutedEventArgs e)
+        {
+            if (pcchek.IsChecked == true)
+            {
+                MessageBox.Show("Der vises kun PC'er!");
+                myDataGrid.ItemsSource = Logik.Instance.AllePCs;
+            }
+            if (pcchek.IsChecked == false)
+            {
+                MessageBox.Show("Alt vises igen!");
                 myDataGrid.ItemsSource = Logik.Instance.AlleItems;
             }
         }

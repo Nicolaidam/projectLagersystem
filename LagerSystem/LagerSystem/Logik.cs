@@ -14,6 +14,7 @@ namespace LagerSystem
 
         ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
         ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
+        ObservableCollection<PC> allePC = new ObservableCollection<PC>();
         private static Logik instance;
 
         private Logik() { }
@@ -35,6 +36,7 @@ namespace LagerSystem
             get => alleMobiler;
             set => alleMobiler = value; 
 }
+        internal ObservableCollection<PC> AllePCs { get => allePC; set => allePC = value; }
         internal void LoadItems() {
             addItem(new Item { Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
             addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
@@ -48,6 +50,9 @@ namespace LagerSystem
             {
                 alleMobiler.Add((Mobil)item);
             }
+            if(item is PC){
+                allePC.Add((PC)item);
+            }
         }
 
      
@@ -59,12 +64,13 @@ namespace LagerSystem
             string id = "" + randomNumber;
             addItem(new Mobil { Id = id, Note = note, Lokation = lokation , Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, Imei1 = imei, Ram1 = ram });
         }
+
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, string pris, string macA, string ram, string proc, string grafikk)
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 1000);
             string id = "" + randomNumber;
-            addItem(new PC { Id = id, Note = note, Lokation = lokation , Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, Imei1 = imei, Ram1 = ram });
+            addItem(new PC { Id = id, Note = note, Lokation = lokation , Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, MacAdresse = macA, Ram = ram, Processor = proc, Grafikkort = grafikk});
         }
     }
 }
