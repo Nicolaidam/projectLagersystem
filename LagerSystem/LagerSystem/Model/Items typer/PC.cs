@@ -9,7 +9,7 @@ namespace LagerSystem.Model.Items_typer
     class PC : Item
     {
         private String macAdresse;
-        private int ram;
+        private String ram;
         private String processor;
         private String grafikkort;
     }

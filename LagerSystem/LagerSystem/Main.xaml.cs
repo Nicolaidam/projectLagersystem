@@ -34,11 +34,8 @@ namespace LagerSystem
                 Add("PC-dele");
             combo.Items.
                 Add("Andet");
-            Logik logik = Logik.Instance;
-            logik.addItem(new Item { Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            logik.addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            logik.addItem(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            myDataGrid.ItemsSource = logik.AlleItems;
+           Logik.Instance.LoadItems();
+           myDataGrid.ItemsSource = Logik.Instance.AlleItems;
             
 
 
@@ -132,7 +129,7 @@ namespace LagerSystem
             //pc
             if (combo.SelectedIndex == 1)
             {
-                
+                Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, mcA.Text, ram.Text, Processor.Text, grafikkort.Text);
             }
             //pc dele
             if (combo.SelectedIndex == 2)
