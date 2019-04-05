@@ -17,6 +17,7 @@ namespace LagerSystem.Model
         private String maerke;
         private String model;
         private String pris;
+       
 
         public string Id {
             get => id;
@@ -38,6 +39,7 @@ namespace LagerSystem.Model
         public string Maerke { get => maerke; set => maerke = value; }
         public string Model { get => model; set => model = value; }
         public string Pris { get => pris; set => pris = value; }
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

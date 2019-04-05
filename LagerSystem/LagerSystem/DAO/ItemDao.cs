@@ -1,4 +1,5 @@
 ﻿using LagerSystem.Model;
+using LagerSystem.Model.Items_typer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,19 @@ namespace LagerSystem.DAO
 {
     interface ItemDao
     {
-        //Disse metoder burde være public, men det kan man ikkei c#? hmm
-        // se https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
+        
         List<Item> GetAllItems();
-        List<Item> GetAllMobil();
-        List<Item> GetAllPC();
-        List<Item> GetAllPCDele();
-        void UpdateItem(Item item);
-        void DeleteItem(Item item);
-        Item GetItem(int id);
+        
+        List<PC> GetAllPC();
+        List<PCDele> GetAllPCDele();
+       
+        void UpdatePC(PC mobil);
+        void UpdatePCDele(PCDele PCDel);
+       
+        void DeletePC(int id);
+        void DeletePCdele(int id);
+        
+        void InsertPC(PC pc);
+        void InsertPCdele(PCDele pcdel);
     }
 }

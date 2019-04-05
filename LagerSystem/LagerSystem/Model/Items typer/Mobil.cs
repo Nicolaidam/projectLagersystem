@@ -8,11 +8,11 @@ namespace LagerSystem.Model.Items_typer
 {
     class Mobil : Item
     {
-        private String Imei;
-        private String Ram;
+        private String imei;
+        private String ram;
 
-        public string Imei1 { get => Imei; set => Imei = value; }
-        public String Ram1 { get => Ram; set => Ram = value; }
+        public string Imei { get => imei; set => imei = value; }
+        public String Ram { get => ram; set => ram = value; }
     }
 
 }
