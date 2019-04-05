@@ -1,5 +1,6 @@
 ﻿using LagerSystem.DAO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace LagerSystem
         public Login()
         {
             InitializeComponent();
+
+            List<String> gg = new List<String>();
+            gg = loginDao.getBrugere();
+            v1.Text = gg[0];
+            v2.Text = gg[1];
+            v3.Text = gg[2];
+            v4.Text = gg[3];
 
         }
 

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LagerSystem.DAO;
 using LagerSystem.Model;
 using LagerSystem.Model.Items_typer;
 
@@ -11,6 +12,8 @@ namespace LagerSystem
 {
     class Logik
     {
+
+        ItemDao itemDao = new ItemDaoImpl();
 
         ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
         ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
@@ -38,11 +41,16 @@ namespace LagerSystem
 }
         internal ObservableCollection<PC> AllePCs { get => allePC; set => allePC = value; }
         internal void LoadItems() {
-            addItem(new Item { Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            addItem(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
+            List<Item> h = itemDao.GetAllItems();
+          
+            addItem(h[0]);
+            addItem(h[1]);
+            addItem(h[2]);
+            //addItem(new Item { Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
+            //addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
+            //addItem(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
 
-}
+        }
        internal void addItem(Item item)
         {
             AlleItems.Add(item);

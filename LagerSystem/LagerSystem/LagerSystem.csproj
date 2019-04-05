@@ -103,6 +103,7 @@
     <Compile Include="Model\Items typer\Mobil.cs" />
     <Compile Include="Model\Items typer\PC.cs" />
     <Compile Include="Model\Items typer\PCDele.cs" />
+    <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

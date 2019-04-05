@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LagerSystem.Model;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +18,7 @@ namespace LagerSystem.DAO
 
         void SletBruger(String brugernavn);
         void UpdaterBruger(String brugernavn);
+
+        List<String> getBrugere(); 
     }
 }

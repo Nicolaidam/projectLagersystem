@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LagerSystem.Model;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -37,6 +39,33 @@ namespace LagerSystem.DAO
             return temp;
             
         }
+
+        public List<String> getBrugere()
+        {
+            //ArrayList liste = new ArrayList();
+            List<String> hs = new List<String>();
+            String[] arr;
+            con.Open();
+            String syntax = "SELECT * FROM Login";
+            cmd = new SqlCommand(syntax, con);
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                //LoginModel h = new LoginModel();
+                String temp1 = dr[0].ToString();
+                String temp2 = dr[1].ToString();
+                //h.Brugernavn = temp1;
+                //h.Password = temp2;
+                //liste.Add(h);
+                hs.Add(temp1);
+                hs.Add(temp2);
+
+            }
+
+            con.Close();
+            return hs;
+        }
+
         //returner fejl hvis ikke brugernavn og password passer ELLER database fejler. 
         //Ellers returneres passwordet tilhørende til brugernavet
         public string GetPassword(string brugernavn)
@@ -72,6 +101,8 @@ namespace LagerSystem.DAO
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
     
