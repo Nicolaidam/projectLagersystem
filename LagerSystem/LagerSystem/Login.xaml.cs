@@ -35,6 +35,10 @@ namespace LagerSystem
             v3.Text = gg[2];
             v4.Text = gg[3];
 
+            loginDao.OpreBruger("biver4","larsen2");
+
+            hha.Text = loginDao.GetPassword("biver4");
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

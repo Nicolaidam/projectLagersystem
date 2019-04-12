@@ -74,13 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DAO\ItemDao.cs" />
-    <Compile Include="DAO\ItemDaoImpl.cs" />
     <Compile Include="DAO\LoginDao.cs" />
     <Compile Include="DAO\LoginDaoImpl.cs" />
     <Compile Include="DAO\Mobil\MobilDaoImpl.cs" />
-    <Compile Include="DAO\PCDelDao.cs" />
-    <Compile Include="DAO\PCDao.cs" />
     <Compile Include="DAO\Mobil\IMobilDao.cs" />
     <Compile Include="Logik.cs" />
     <Compile Include="Login.xaml.cs">

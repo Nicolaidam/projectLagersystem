@@ -16,9 +16,12 @@
         <CheckBox Content="Automatisk Login" HorizontalAlignment="Left" Margin="257,216,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Name="hh"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="97,69,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
         <TextBox Name="morten" HorizontalAlignment="Left" Height="23" Margin="81,36,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock Name="v1" HorizontalAlignment="Left" Margin="57,186,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="v1" HorizontalAlignment="Left" Margin="57,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="TextBlock"/><InlineUIContainer>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
+            </InlineUIContainer></TextBlock>
         <TextBlock Name="v2" HorizontalAlignment="Left" Margin="57,215,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock Name="v3" HorizontalAlignment="Left" Margin="57,253,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBlock Name="v4" HorizontalAlignment="Left" Margin="57,290,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock Name="hha" HorizontalAlignment="Left" Margin="636,61,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Window>

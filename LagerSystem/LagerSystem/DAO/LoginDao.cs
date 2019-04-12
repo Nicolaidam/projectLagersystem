@@ -19,6 +19,8 @@ namespace LagerSystem.DAO
         void SletBruger(String brugernavn);
         void UpdaterBruger(String brugernavn);
 
-        List<String> getBrugere(); 
+        List<String> getBrugere();
+
+        void OpreBruger(String brugernavn, String password);
     }
 }

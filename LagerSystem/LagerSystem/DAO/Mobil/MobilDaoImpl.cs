@@ -11,82 +11,135 @@ namespace LagerSystem.DAO
 {
     class MobilDaoImpl : IMobilDao
     {
-        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
+        //  SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"+Application.StartupPath+"\\Database1.mdf\";Integrated Security=True"");
+          SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
+
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\Database1.mdf;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=c:\\Project\\Data\\Database1.mdf\";Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=C:\\Users\\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         public void DeleteMobil(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Mobil> GetAllMobil() { 
-        
-            var liste = new List<Mobil>();
             con.Open();
-            String syntax = "SELECT * FROM Mobil";
+            String syntax = "DELETE FROM mobil WHERE id='"+id+"'";
             cmd = new SqlCommand(syntax, con);
             try
             {
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    String temp1 = dr[0].ToString(); //id
-                    String temp2 = dr[1].ToString(); //note
-                    String temp3 = dr[2].ToString(); //lokation
-                    String temp4 = dr[3].ToString(); //ejer
-                    String temp5 = dr[4].ToString(); //afd
-                    String temp6 = dr[5].ToString(); //maerke
-                    String temp7 = dr[6].ToString(); //model
-                    String temp8 = dr[7].ToString(); //pris
-                    String temp9 = dr[8].ToString(); //imei
-                    String temp10 = dr[9].ToString(); //ram
-
-                    Mobil i = new Mobil();
-
-                    i.Id = temp1;
-                    i.Note = temp2;
-                    i.Lokation = temp3;
-                    i.Ejer = temp4;
-                    i.Afdeling = temp5;
-                    i.Maerke = temp6;
-                    i.Model = temp7;
-                    i.Pris = temp8;
-                    i.Imei = temp9;
-                    i.Ram = temp10;
-
-                    liste.Add(i);
-
-                }
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException)
             {
                 //TODO lav fejl medd - evt lav specielt return ved fejl
             }
+            con.Close();
+        }
+
+        public List<Mobil> GetAllMobil() {
+
+            var hs = new List<Mobil>();
+           
+                con.Open();
+            
+            String syntax = "SELECT * FROM mobil";
+            cmd = new SqlCommand(syntax, con);
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                String temp1 = dr[0].ToString(); //id
+                String temp2 = dr[1].ToString(); //note
+                String temp3 = dr[2].ToString(); //lokation
+                String temp4 = dr[3].ToString(); //ejer
+                String temp5 = dr[4].ToString(); //afd
+                String temp6 = dr[5].ToString(); //maerke
+                String temp7 = dr[6].ToString(); //model
+                String temp8 = dr[7].ToString(); //pris
+                String temp9 = dr[8].ToString(); //imei
+                String temp10 = dr[9].ToString(); //ram
+
+                Mobil ii = new Mobil();
+
+                ii.Id = temp1;
+                ii.Note = temp2;
+                ii.Lokation = temp3;
+                ii.Ejer = temp4;
+                ii.Afdeling = temp5;
+                ii.Maerke = temp6;
+                ii.Model = temp7;
+                ii.Pris = temp8;
+                ii.Imei = temp9;
+                ii.Ram = temp10;
+                hs.Add(ii);
+
+            }
 
             con.Close();
-            return liste;
+            return hs;
         }
 
         public void InsertMobil(Mobil m) {
 
             //Evt return true hvis insert kommer igennem
             
+            
+            //ID skal auto incrementes i db
+            
+            String syntax = "INSERT INTO mobil (note, lokation, ejer, afdeling, maerke, model, pris, imei, ram) VALUES(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
+            cmd = new SqlCommand(syntax, con);
+
+
+            cmd.Parameters.AddWithValue("@param1", m.Note);
+            cmd.Parameters.AddWithValue("@param2", m.Lokation);
+            cmd.Parameters.AddWithValue("@param3", m.Ejer);
+            cmd.Parameters.AddWithValue("@param4", m.Afdeling);
+            cmd.Parameters.AddWithValue("@param5", m.Maerke);
+            cmd.Parameters.AddWithValue("@param6", m.Model);
+            cmd.Parameters.AddWithValue("@param7", m.Pris);
+            cmd.Parameters.AddWithValue("@param8", m.Imei);
+            cmd.Parameters.AddWithValue("@param9", m.Ram);
+         
+            /*
+
+            cmd.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = m.Lokation;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 30).Value = m.Ejer;
+                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 30).Value = m.Afdeling;
+                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 30).Value = m.Maerke;
+                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 30).Value = m.Model;
+                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 30).Value = m.Pris;
+                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 30).Value = m.Imei;
+                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 30).Value = m.Ram;
+                */
+
+            //cmd.CommandType = CommandType.Text;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            
+        }
+
+        public void UpdateMobil(Mobil m)
+        {
+            String id = m.Id;
             con.Open();
             //ID skal auto incrementes i db
-            String syntax = "Insert into Mobil (note, lokation, ejer, afdeling, maerke, model, pris, imei, ram) VALUES(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
+            String syntax = "UPDATE mobil SET note='@param1',lokation='@param2',ejer='@param3'," +
+                "afdeling='@param4',maerke='@param5',model='@param6',pris='@param7'imei='@param8'ram='@param9' WHERE id='"+m.Id+"'";
             cmd = new SqlCommand(syntax, con);
 
             try
             {
-                cmd.Parameters.Add("@param1", SqlDbType.VarChar, 50).Value = m.Note;
-                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = m.Lokation;
-                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = m.Ejer;
-                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 50).Value = m.Afdeling;
-                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 50).Value = m.Maerke;
-                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 50).Value = m.Model;
-                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 50).Value = m.Pris;
-                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 50).Value = m.Imei;
-                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 50).Value = m.Ram;
+                cmd.Parameters.Add("@param1", SqlDbType.VarChar, 30).Value = m.Note;
+                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = m.Lokation;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 30).Value = m.Ejer;
+                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 30).Value = m.Afdeling;
+                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 30).Value = m.Maerke;
+                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 30).Value = m.Model;
+                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 30).Value = m.Pris;
+                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 30).Value = m.Imei;
+                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 30).Value = m.Ram;
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
@@ -95,24 +148,10 @@ namespace LagerSystem.DAO
             {
                 //TODO lav fejl medd - evt lav specielt return ved fejl
             }
-
+            con.Close();
         }
-
-        public void UpdateMobil(Mobil mobil)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static String inStr(String s)
-        {
-            String ss = "'" + s + "',";
-            return ss;
-        }
-        private static String inStrSlut(String s)
-        {
-            String ss = "'" + s + "'";
-            return ss;
-        }
+        
+      
 
     }
 }

@@ -19,7 +19,7 @@ namespace LagerSystem.Model
         private String pris;
        
 
-        public string Id {
+        public String Id {
             get => id;
             set => id = value;
         }

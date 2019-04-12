@@ -11,7 +11,14 @@ namespace LagerSystem.DAO
 {
     class LoginDaoImpl : LoginDao
     {
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|C:|\\|Users|\\|nicol|\\|Source|\\|Repos|\\|Nicolaidam|\\|projectLagersystem\\|LagerSystem|\\Database1.mdf\";Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nicol\Source\Repos\Nicolaidam\projectLagersystem\LagerSystem\LagerSystem\Database1.mdf;Integrated Security=True");
+        //String connectionString = "Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Im awsome\Documents\Visual Studio 2013\Projects\WpfApplication\WpfApplication\BRDS.mdf;Integrated Security=True";
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=C:\\Users\\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
         SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\Database1.mdf;Integrated Security=True");
+
         SqlCommand cmd;
         SqlDataReader dr;
 
@@ -102,7 +109,34 @@ namespace LagerSystem.DAO
             throw new NotImplementedException();
         }
 
+        public void OpreBruger(String brugernavn, String password)
+        {
+            String syntax = "INSERT INTO Login (brugernavn, password) VALUES(@param1,@param2)";
+            cmd = new SqlCommand(syntax, con);
 
+
+            cmd.Parameters.AddWithValue("@param1", brugernavn);
+            cmd.Parameters.AddWithValue("@param2", password);
+
+            /*
+
+            cmd.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = m.Lokation;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 30).Value = m.Ejer;
+                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 30).Value = m.Afdeling;
+                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 30).Value = m.Maerke;
+                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 30).Value = m.Model;
+                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 30).Value = m.Pris;
+                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 30).Value = m.Imei;
+                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 30).Value = m.Ram;
+                */
+
+            //cmd.CommandType = CommandType.Text;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        
     }
 }
     
