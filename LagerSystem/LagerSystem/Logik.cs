@@ -13,8 +13,7 @@ namespace LagerSystem
     class Logik
     {
         IMobilDao mobilDao = new MobilDaoImpl();
-        //ItemDao itemDao = new ItemDaoImpl();
-
+        IBrugerDao brugerDao = new BrugerDaoImpl();
         ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
         ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
         ObservableCollection<PC> allePC = new ObservableCollection<PC>();
@@ -56,28 +55,10 @@ namespace LagerSystem
                     }
                  }
 
-            //addItem(h[0]);
-            //addItem(h[1]);
-            //addItem(h[2]);
-            //addItem(new Item { Ejer = "Jacob", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            //addItem(new Mobil { Afdeling = "470", Ejer = "Anders", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
-            //addItem(new Item { Afdeling = "30", Ejer = "Brian", Id = "qwe", Lokation = "h", Maerke = "kk", Model = "din mor", Note = "hhhhhh", Pris = "123" });
 
         }
-        internal void addItem(Item item)
+        private void addItem(Item item)
         {
-            Mobil ii = new Mobil();
-            ii.Note = "noteTest";
-            ii.Lokation = "noteTest";
-            ii.Ejer = "noteTest";
-            ii.Afdeling = "noteTest";
-            ii.Maerke = "noteTest";
-            ii.Model = "noteTest";
-            ii.Pris = "noteTest";
-            ii.Imei = "noteTest";
-            ii.Ram = "noteTest";
-            mobilDao.InsertMobil(ii);
-
 
             AlleItems.Add(item);
             if (item is Mobil)
@@ -91,14 +72,23 @@ namespace LagerSystem
             }
         }
 
+        
 
         //tager imod alt undtagen ID (tanken er at det måske kan genereres i databasen og blive oprettet den vej igennem?)
-        internal void addMobil(string note, string lokation, string ejer, string afd, string maerke, string model, string pris, string imei, string ram)
+        internal void addMobil(Mobil m)
         {
-            Random random = new Random();
-            int randomNumber = random.Next(0, 1000);
-            string id = "" + randomNumber;
-            addItem(new Mobil { Id = id, Note = note, Lokation = lokation, Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, Imei = imei, Ram = ram });
+            Mobil ii = new Mobil();
+            ii.Note = m.Note;
+            ii.Lokation = m.Lokation;
+            ii.Ejer = m.Ejer;
+            ii.Afdeling = m.Afdeling;
+            ii.Maerke = m.Maerke;
+            ii.Model = m.Model;
+            ii.Pris = m.Pris;
+            ii.Imei = m.Imei;
+            ii.Ram = m.Ram;
+            mobilDao.InsertMobil(ii);
+            addItem(new Mobil {Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
         }
 
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, string pris, string macA, string ram, string proc, string grafikk)
@@ -108,5 +98,19 @@ namespace LagerSystem
             string id = "" + randomNumber;
             addItem(new PC { Id = id, Note = note, Lokation = lokation, Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, MacAdresse = macA, Ram = ram, Processor = proc, Grafikkort = grafikk });
         }
+
+        internal Boolean verificerBruger(String brugernavn,String password)
+        {
+            Boolean b = false;
+
+            if (brugerDao.GetPassword(brugernavn).Equals(password) && brugerDao.GetBrugernavn(password).Equals(brugernavn))
+            {
+                b = true;
+            }
+
+            return b;
+        }
+        
+
     }
 }

@@ -23,21 +23,11 @@ namespace LagerSystem
     /// </summary>
     public partial class Login : Window
     {
-        LoginDao loginDao = new LoginDaoImpl();
+       
+    
         public Login()
         {
             InitializeComponent();
-
-            List<String> gg = new List<String>();
-            gg = loginDao.getBrugere();
-            v1.Text = gg[0];
-            v2.Text = gg[1];
-            v3.Text = gg[2];
-            v4.Text = gg[3];
-
-            loginDao.OpreBruger("biver4","larsen2");
-
-            hha.Text = loginDao.GetPassword("biver4");
 
         }
 
@@ -64,10 +54,9 @@ namespace LagerSystem
             {
                 //MessageBox.Show("DEN ER TRUE!");
                 String dbbBrugernavn, dbbPassword;
-
-                dbbBrugernavn = loginDao.GetBrugernavn("123456");
-                dbbPassword = loginDao.GetPassword("Johnny");
-                if ("Johnny".Equals(dbbBrugernavn) && "123456".Equals(dbbPassword))
+                
+               
+                if (Logik.Instance.verificerBruger("admin", "123456"))
                 {
                     Main h = new Main();
                     h.Show();
@@ -77,6 +66,7 @@ namespace LagerSystem
                 {
                     MessageBox.Show("Forkert login");
                 }
+                
 
             }
             else
@@ -87,13 +77,10 @@ namespace LagerSystem
                 inputBrugernavn = textboxBrugernavn.Text;
                 inputPassword = textboxPassword.Password;
 
-                //dbBrugernavn = getBrugernavn(inputPassword);
-                //dbPassword = getPassword(inputBrugernavn);
-                dbBrugernavn = loginDao.GetBrugernavn(inputPassword);
-                dbPassword = loginDao.GetPassword(inputBrugernavn);
+      
 
-                if (inputBrugernavn.Equals(dbBrugernavn) && inputPassword.Equals(dbPassword))
-                {
+                    if (Logik.Instance.verificerBruger(inputBrugernavn, inputPassword))
+                    {
                     Main h = new Main();
                     h.Show();
                     this.Hide();
@@ -102,6 +89,7 @@ namespace LagerSystem
                 {
                     MessageBox.Show("Forkert login");
                 }
+                
             }
 
 
@@ -114,8 +102,7 @@ namespace LagerSystem
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //LoginDao hej = new LoginDaoImpl();
-            morten.Text = loginDao.GetBrugernavn("123456");
+           
         }
     }
 }

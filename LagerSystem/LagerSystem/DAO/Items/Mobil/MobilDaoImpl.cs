@@ -11,19 +11,14 @@ namespace LagerSystem.DAO
 {
     class MobilDaoImpl : IMobilDao
     {
-        //  SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"+Application.StartupPath+"\\Database1.mdf\";Integrated Security=True"");
-          SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
-
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\Database1.mdf;Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=c:\\Project\\Data\\Database1.mdf\";Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=C:\\Users\\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
+       
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         public void DeleteMobil(int id)
         {
             con.Open();
-            String syntax = "DELETE FROM mobil WHERE id='"+id+"'";
+            String syntax = "DELETE FROM Mobil WHERE id='"+id+"'";
             cmd = new SqlCommand(syntax, con);
             try
             {
@@ -43,7 +38,7 @@ namespace LagerSystem.DAO
            
                 con.Open();
             
-            String syntax = "SELECT * FROM mobil";
+            String syntax = "SELECT * FROM Mobil";
             cmd = new SqlCommand(syntax, con);
             dr = cmd.ExecuteReader();
 
@@ -87,7 +82,7 @@ namespace LagerSystem.DAO
             
             //ID skal auto incrementes i db
             
-            String syntax = "INSERT INTO mobil (note, lokation, ejer, afdeling, maerke, model, pris, imei, ram) VALUES(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
+            String syntax = "INSERT INTO Mobil (note, lokation, ejer, afdeling, maerke, model, pris, imei, ram) VALUES(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
             cmd = new SqlCommand(syntax, con);
 
 
@@ -101,19 +96,7 @@ namespace LagerSystem.DAO
             cmd.Parameters.AddWithValue("@param8", m.Imei);
             cmd.Parameters.AddWithValue("@param9", m.Ram);
          
-            /*
-
-            cmd.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = m.Lokation;
-                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 30).Value = m.Ejer;
-                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 30).Value = m.Afdeling;
-                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 30).Value = m.Maerke;
-                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 30).Value = m.Model;
-                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 30).Value = m.Pris;
-                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 30).Value = m.Imei;
-                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 30).Value = m.Ram;
-                */
-
-            //cmd.CommandType = CommandType.Text;
+            
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
@@ -122,11 +105,10 @@ namespace LagerSystem.DAO
 
         public void UpdateMobil(Mobil m)
         {
-            String id = m.Id;
             con.Open();
-            //ID skal auto incrementes i db
-            String syntax = "UPDATE mobil SET note='@param1',lokation='@param2',ejer='@param3'," +
-                "afdeling='@param4',maerke='@param5',model='@param6',pris='@param7'imei='@param8'ram='@param9' WHERE id='"+m.Id+"'";
+           
+            String syntax = "UPDATE Mobil SET note='@param1',lokation='@param2',ejer='@param3'," +
+                "afdeling='@param4',maerke='@param5',model='@param6',pris='@param7',imei='@param8',ram='@param9' WHERE id='"+m.Id+"'";
             cmd = new SqlCommand(syntax, con);
 
             try

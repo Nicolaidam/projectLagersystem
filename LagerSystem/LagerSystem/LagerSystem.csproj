@@ -74,10 +74,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DAO\LoginDao.cs" />
-    <Compile Include="DAO\LoginDaoImpl.cs" />
-    <Compile Include="DAO\Mobil\MobilDaoImpl.cs" />
-    <Compile Include="DAO\Mobil\IMobilDao.cs" />
+    <Compile Include="DAO\Bruger\IBrugerDao.cs" />
+    <Compile Include="DAO\Bruger\BrugerDaoImpl.cs" />
+    <Compile Include="DAO\Items\PC\IPCDao.cs" />
+    <Compile Include="DAO\Items\Mobil\MobilDaoImpl.cs" />
+    <Compile Include="DAO\Items\Mobil\IMobilDao.cs" />
+    <Compile Include="DAO\Items\PC\PCDaoImpl.cs" />
     <Compile Include="Logik.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -140,15 +142,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Database1.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database1_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -134,7 +134,8 @@ namespace LagerSystem
                 mo.Pris = Pris.Text;
                 mo.Imei = IMEI.Text;
                 mo.Ram = ram.Text;
-                Logik.Instance.addItem(mo);
+                Logik.Instance.addMobil(mo);
+               
                 
                 //Logik.Instance.addMobil(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, IMEI.Text, ram.Text);
                 MessageBox.Show("Mobil tilføjet!!!");

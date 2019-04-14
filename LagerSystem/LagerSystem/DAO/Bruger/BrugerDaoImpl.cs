@@ -1,24 +1,16 @@
-﻿using LagerSystem.Model;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LagerSystem.DAO
+namespace LagerSystem.DAO 
 {
-    class LoginDaoImpl : LoginDao
+    class BrugerDaoImpl : IBrugerDao
     {
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|C:|\\|Users|\\|nicol|\\|Source|\\|Repos|\\|Nicolaidam|\\|projectLagersystem\\|LagerSystem|\\Database1.mdf\";Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nicol\Source\Repos\Nicolaidam\projectLagersystem\LagerSystem\LagerSystem\Database1.mdf;Integrated Security=True");
-        //String connectionString = "Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Im awsome\Documents\Visual Studio 2013\Projects\WpfApplication\WpfApplication\BRDS.mdf;Integrated Security=True";
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=C:\\Users\\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\bin\\Debug\\Database1.mdf\";Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
-        SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True");
-        //SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\nicol\\Source\\Repos\\Nicolaidam\\projectLagersystem\\LagerSystem\\LagerSystem\\Database1.mdf;Integrated Security=True");
-
+      
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
 
@@ -27,11 +19,13 @@ namespace LagerSystem.DAO
         public string GetBrugernavn(string password)
         {
             con.Open();
-            String syntax = "SELECT brugernavn FROM Login WHERE password = '" + password + "'";
+            String syntax = "SELECT brugernavn FROM Bruger WHERE password = '" + password + "'";
             cmd = new SqlCommand(syntax, con);
             dr = cmd.ExecuteReader();
             dr.Read();
             String temp = "fejl";
+
+           
 
             try
             {
@@ -40,11 +34,13 @@ namespace LagerSystem.DAO
             catch (System.InvalidOperationException)
             {
 
+
+
             }
 
             con.Close();
             return temp;
-            
+
         }
 
         public List<String> getBrugere()
@@ -53,7 +49,7 @@ namespace LagerSystem.DAO
             List<String> hs = new List<String>();
             String[] arr;
             con.Open();
-            String syntax = "SELECT * FROM Login";
+            String syntax = "SELECT * FROM Bruger";
             cmd = new SqlCommand(syntax, con);
             dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -78,7 +74,7 @@ namespace LagerSystem.DAO
         public string GetPassword(string brugernavn)
         {
             con.Open();
-            String syntax = "SELECT password FROM Login WHERE brugernavn = '" + brugernavn + "'";
+            String syntax = "SELECT password FROM Bruger WHERE brugernavn = '" + brugernavn + "'";
             cmd = new SqlCommand(syntax, con);
             dr = cmd.ExecuteReader();
             dr.Read();
@@ -101,7 +97,7 @@ namespace LagerSystem.DAO
         {
             con.Open();
             //String syntax = "DELETE FROM Login WHERE brugernavn = '" + brugernavn + "'";
-            
+
         }
 
         public void UpdaterBruger(string brugernavn)
@@ -111,7 +107,7 @@ namespace LagerSystem.DAO
 
         public void OpreBruger(String brugernavn, String password)
         {
-            String syntax = "INSERT INTO Login (brugernavn, password) VALUES(@param1,@param2)";
+            String syntax = "INSERT INTO Bruger (brugernavn, password) VALUES(@param1,@param2)";
             cmd = new SqlCommand(syntax, con);
 
 
@@ -135,8 +131,5 @@ namespace LagerSystem.DAO
             cmd.ExecuteNonQuery();
             con.Close();
         }
-
-        
     }
 }
-    
