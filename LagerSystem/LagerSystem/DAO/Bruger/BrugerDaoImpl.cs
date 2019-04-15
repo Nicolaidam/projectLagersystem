@@ -9,8 +9,11 @@ namespace LagerSystem.DAO
 {
     class BrugerDaoImpl : IBrugerDao
     {
-      
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+
+        //Jacob 
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        // Nico
+        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
 
