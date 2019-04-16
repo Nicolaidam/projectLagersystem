@@ -1,4 +1,5 @@
 ﻿using LagerSystem.DAO;
+using LagerSystem.Model.Items_typer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,11 +24,25 @@ namespace LagerSystem
     /// </summary>
     public partial class Login : Window
     {
-       
-    
+
+        IMobilDao d = new MobilDaoImpl();
         public Login()
         {
             InitializeComponent();
+
+            Mobil m = new Mobil();
+            m.Id = "30";
+            m.Note = "ssse";
+            m.Lokation = "sssse";
+            m.Ejer = "fssse";
+            m.Afdeling = "sse";
+            m.Maerke = "ssse";
+            m.Model = "ssse";
+            m.Pris = "sse";
+            m.Imei = "ss";
+            m.Ram = "se";
+
+            d.UpdateMobil(m);
 
         }
 

@@ -13,9 +13,9 @@ namespace LagerSystem.DAO
     {
 
         //Jacob 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         // Nico
-        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         public void DeleteMobil(int id)
@@ -110,8 +110,8 @@ namespace LagerSystem.DAO
         {
             con.Open();
            
-            String syntax = "UPDATE Mobil SET note='@param1',lokation='@param2',ejer='@param3'," +
-                "afdeling='@param4',maerke='@param5',model='@param6',pris='@param7',imei='@param8',ram='@param9' WHERE id='"+m.Id+"'";
+            String syntax = "UPDATE Mobil SET note=@param1,lokation=@param2,ejer=@param3," +
+                "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,imei=@param8,ram=@param9 WHERE id="+m.Id;
             cmd = new SqlCommand(syntax, con);
 
             try
