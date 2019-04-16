@@ -36,13 +36,15 @@ namespace LagerSystem
                 Add("Andet");
            Logik.Instance.LoadItems();
            myDataGrid.ItemsSource = Logik.Instance.AlleItems;
-            
+            myDataGrid.IsReadOnly = true;
+
+
 
 
 
         }
 
-        
+
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -160,6 +162,7 @@ namespace LagerSystem
 
         private void myDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+          
 
         }
 
@@ -192,5 +195,27 @@ namespace LagerSystem
                 MessageBox.Show("Alt vises igen!");
                 myDataGrid.ItemsSource = Logik.Instance.AlleItems;
             }
+        }
+
+        private void TextBlock_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+           // myDataGrid.se
+        }
+
+        private void myDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            MessageBox.Show("Ændring foretaget!");
+            // metoden nedenunder skal indkommenteres når DAO fungerer. Så burde man kunne redigere i et mobil item i DATAgrid og se det blive ændret i DB
+          //  Logik.Instance.OpdaterMobiler();
+        }
+
+        private void myDataGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            myDataGrid.IsReadOnly = false;
         }
     } }

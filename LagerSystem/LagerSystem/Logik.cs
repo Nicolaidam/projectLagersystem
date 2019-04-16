@@ -110,7 +110,14 @@ namespace LagerSystem
 
             return b;
         }
-        
 
+       
+        internal void OpdaterMobiler()
+        {
+            for(int i = 0; i< alleMobiler.Count; i++)
+            {
+                mobilDao.UpdateMobil(alleMobiler[i]);
+            }
+        }
     }
 }
