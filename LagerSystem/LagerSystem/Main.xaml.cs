@@ -35,8 +35,8 @@ namespace LagerSystem
             combo.Items.
                 Add("Andet");
            Logik.Instance.LoadItems();
-           myDataGrid.ItemsSource = Logik.Instance.AlleItems;
-            myDataGrid.IsReadOnly = true;
+           myDataGridd.ItemsSource = Logik.Instance.AlleItems;
+            myDataGridd.IsReadOnly = true;
 
 
 
@@ -160,7 +160,7 @@ namespace LagerSystem
             }
         }
 
-        private void myDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void myDataGridd_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
           
 
@@ -173,12 +173,12 @@ namespace LagerSystem
             if (mobiltjek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun mobiler!");
-                myDataGrid.ItemsSource = Logik.Instance.AlleMobiler;
+                myDataGridd.ItemsSource = Logik.Instance.AlleMobiler;
             }
             if (mobiltjek.IsChecked == false)
             {
                 MessageBox.Show("Alt vises igen!");
-                myDataGrid.ItemsSource = Logik.Instance.AlleItems;
+                myDataGridd.ItemsSource = Logik.Instance.AlleItems;
             }
            
         }
@@ -188,12 +188,12 @@ namespace LagerSystem
             if (pcchek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun PC'er!");
-                myDataGrid.ItemsSource = Logik.Instance.AllePCs;
+                myDataGridd.ItemsSource = Logik.Instance.AllePCs;
             }
             if (pcchek.IsChecked == false)
             {
                 MessageBox.Show("Alt vises igen!");
-                myDataGrid.ItemsSource = Logik.Instance.AlleItems;
+                myDataGridd.ItemsSource = Logik.Instance.AlleItems;
             }
         }
 
@@ -209,13 +209,10 @@ namespace LagerSystem
             Logik.Instance.OpdaterMobiler();
         }
 
-        private void myDataGrid_CurrentCellChanged(object sender, EventArgs e)
-        {
-        
-        }
+       
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            myDataGrid.IsReadOnly = false;
+            myDataGridd.IsReadOnly = false;
         }
     } }
