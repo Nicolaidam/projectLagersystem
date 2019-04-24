@@ -21,7 +21,8 @@ namespace LagerSystem.DAO
         public void DeleteMobil(int id)
         {
             con.Open();
-            String syntax = "DELETE FROM Mobil WHERE id='"+id+"'";
+            String syntax = "DELETE FROM Mobil WHERE id=@param1";
+            cmd.Parameters.AddWithValue("@param1", id);
             cmd = new SqlCommand(syntax, con);
             try
             {

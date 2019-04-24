@@ -206,7 +206,7 @@ namespace LagerSystem
         {
             MessageBox.Show("Ændring foretaget!");
             // metoden nedenunder skal indkommenteres når DAO fungerer. Så burde man kunne redigere i et mobil item i DATAgrid og se det blive ændret i DB
-          //  Logik.Instance.OpdaterMobiler();
+            Logik.Instance.OpdaterMobiler();
         }
 
         private void myDataGrid_CurrentCellChanged(object sender, EventArgs e)

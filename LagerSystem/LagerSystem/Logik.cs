@@ -59,15 +59,19 @@ namespace LagerSystem
         }
         private void addItem(Item item)
         {
+            String id = item.Id;
+
 
             AlleItems.Add(item);
             if (item is Mobil)
             {
+                item.Id = "mo" + item.Id;
                 alleMobiler.Add((Mobil)item);
                 
             }
             if (item is PC)
             {
+                item.Id = "pc" + item.Id;
                 allePC.Add((PC)item);
             }
         }
