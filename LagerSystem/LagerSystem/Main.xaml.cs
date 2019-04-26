@@ -35,8 +35,8 @@ namespace LagerSystem
             combo.Items.
                 Add("Andet");
            Logik.Instance.LoadItems();
-           myDataGridd.ItemsSource = Logik.Instance.AlleItems;
-            myDataGridd.IsReadOnly = true;
+           dataGridv2.ItemsSource = Logik.Instance.AlleItems;
+            dataGridv2.IsReadOnly = true;
 
 
 
@@ -160,25 +160,19 @@ namespace LagerSystem
             }
         }
 
-        private void myDataGridd_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-          
-
-        }
-
-       
+            
 
         private void mobiltjek_Click(object sender, RoutedEventArgs e)
         {
             if (mobiltjek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun mobiler!");
-                myDataGridd.ItemsSource = Logik.Instance.AlleMobiler;
+                dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
             }
             if (mobiltjek.IsChecked == false)
             {
                 MessageBox.Show("Alt vises igen!");
-                myDataGridd.ItemsSource = Logik.Instance.AlleItems;
+                dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             }
            
         }
@@ -188,12 +182,12 @@ namespace LagerSystem
             if (pcchek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun PC'er!");
-                myDataGridd.ItemsSource = Logik.Instance.AllePCs;
+                dataGridv2.ItemsSource = Logik.Instance.AllePCs;
             }
             if (pcchek.IsChecked == false)
             {
                 MessageBox.Show("Alt vises igen!");
-                myDataGridd.ItemsSource = Logik.Instance.AlleItems;
+                dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             }
         }
 
@@ -202,17 +196,4 @@ namespace LagerSystem
            // myDataGrid.se
         }
 
-        private void myDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            MessageBox.Show("Ændring foretaget!");
-            // metoden nedenunder skal indkommenteres når DAO fungerer. Så burde man kunne redigere i et mobil item i DATAgrid og se det blive ændret i DB
-            Logik.Instance.OpdaterMobiler();
-        }
-
-       
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            myDataGridd.IsReadOnly = false;
-        }
-    } }
+                 } }
