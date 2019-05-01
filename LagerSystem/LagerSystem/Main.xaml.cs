@@ -273,5 +273,20 @@ namespace LagerSystem
             fortryd.IsEnabled = false;
             slet.IsEnabled = false;
         }
+
+        private void slet_Click(object sender, RoutedEventArgs e)
+        {
+            Item customer = (Item)dataGridv2.SelectedItem;
+            if (customer.Id.Contains("m"))
+            {
+                Mobil mob = (Mobil)dataGridv2.SelectedItem;
+                Logik.Instance.SletMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, ram.Text, IMEI.Text);
+
+            }
+            dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
+            aendre.IsEnabled = false;
+            fortryd.IsEnabled = false;
+            slet.IsEnabled = false;
+        }
     }
 }
