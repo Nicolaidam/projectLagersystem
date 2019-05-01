@@ -115,12 +115,36 @@ namespace LagerSystem
             return b;
         }
 
+        internal void OpdaterMobil(string id, string note, string lokation, string ejer, string afdeling, string maerke, string model, string pris, string ram, string imei)
+        {
+
+            for (int i = 0; i < alleMobiler.Count; i++)
+            {
+                if (alleMobiler[i].Id == id)
+                {
+                    alleMobiler[i].Note = note;
+                    alleMobiler[i].Lokation = lokation;
+                    alleMobiler[i].Ejer = ejer;
+                    alleMobiler[i].Afdeling = afdeling;
+                    alleMobiler[i].Maerke = maerke;
+                    alleMobiler[i].Model = model;
+                    alleMobiler[i].Pris = pris;
+                    alleMobiler[i].Ram = ram;
+                    alleMobiler[i].Imei = imei;
+                    string forhelf = id.Remove(0, 2);
+                    mobilDao.UpdateMobil(alleMobiler[i]);
+                }
+            }
+            
+                      
+        }
        
+        // denne bruges ikke mere TROR JEG
         internal void OpdaterMobiler()
         {
             for(int i = 0; i< alleMobiler.Count; i++)
             {
-                mobilDao.UpdateMobil(alleMobiler[i]);
+               // mobilDao.UpdateMobil(alleMobiler[i]);
             }
         }
     }

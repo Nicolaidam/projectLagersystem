@@ -110,9 +110,10 @@ namespace LagerSystem.DAO
         public void UpdateMobil(Mobil m)
         {
             con.Open();
-           
+
+            string iddd = m.Id.Replace("mo", "");        
             String syntax = "UPDATE Mobil SET note=@param1,lokation=@param2,ejer=@param3," +
-                "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,imei=@param8,ram=@param9 WHERE id="+m.Id;
+                "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,imei=@param8,ram=@param9 WHERE id="+iddd;
             cmd = new SqlCommand(syntax, con);
 
             try

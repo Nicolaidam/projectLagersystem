@@ -26,7 +26,12 @@ namespace LagerSystem
     {
         public Main()
         {
+           
             InitializeComponent();
+            aendre.IsEnabled = false;
+            fortryd.IsEnabled = false;
+            opretknap.IsEnabled = false;
+            slet.IsEnabled = false;
             combo.Items.
                 Add("Mobil");
             combo.Items.
@@ -49,6 +54,7 @@ namespace LagerSystem
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            opretknap.IsEnabled = true;
             //mobil
             if(combo.SelectedIndex == 0)
             {
@@ -162,8 +168,12 @@ namespace LagerSystem
        
         private void dataGridv2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            MessageBox.Show(Logik.Instance.AlleMobiler[0].Id.Remove(0,2));
             if(dataGridv2.SelectedIndex != -1)
             {
+                aendre.IsEnabled = true;
+                slet.IsEnabled = true;
+                fortryd.IsEnabled = true;
                 Item customer = (Item)dataGridv2.SelectedItem;
                 if (customer.Id.Contains("m"))
                 {
@@ -221,8 +231,47 @@ namespace LagerSystem
             {
 
             }
-        
+
+            opretknap.IsEnabled = false;
 
     }
-}
+
+        private void fortryd_Click(object sender, RoutedEventArgs e)
+        {
+            slet.IsEnabled = false;
+            aendre.IsEnabled = false;
+            fortryd.IsEnabled = false;
+            RydTekstFelter();
+        }
+
+        private void RydTekstFelter()
+        {
+            afd.Text = "";
+            ejer.Text = "";
+            maerke.Text = "";
+            model.Text = "";
+            Pris.Text = "";
+            lokation.Text = "";
+            Note.Text = "";
+            IMEI.Text = "";
+            ram.Text = "";
+            grafikkort.Text = "";
+            Processor.Text = "";
+        }
+
+        private void aendre_Click(object sender, RoutedEventArgs e)
+        {
+            Item customer = (Item)dataGridv2.SelectedItem;
+            if (customer.Id.Contains("m"))
+            {
+                Mobil mob = (Mobil)dataGridv2.SelectedItem;
+                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, ram.Text, IMEI.Text);
+               
+            }
+            dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
+            aendre.IsEnabled = false;
+            fortryd.IsEnabled = false;
+            slet.IsEnabled = false;
+        }
+    }
 }
