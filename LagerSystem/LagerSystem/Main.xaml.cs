@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using LagerSystem.Model;
 using System.ComponentModel;
 using LagerSystem.Model.Items_typer;
+using System.Data;
 
 namespace LagerSystem
 {
@@ -196,4 +197,30 @@ namespace LagerSystem
            // myDataGrid.se
         }
 
-                 } }
+       
+        private void dataGridv2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(dataGridv2.SelectedIndex != -1)
+            {
+                Item customer = (Item)dataGridv2.SelectedItem;
+                if (customer.Id.Contains("m"))
+                {
+                    Mobil mob = (Mobil)dataGridv2.SelectedItem;
+                    IMEI.Text = mob.Imei;
+                    ram.Text = mob.Ram;
+
+                }
+                MessageBox.Show("Ejer: " + customer.Ejer);
+                afd.Text = customer.Afdeling;
+                ejer.Text = customer.Ejer;
+                maerke.Text = customer.Maerke;
+                model.Text = customer.Model;
+                Pris.Text = customer.Pris;
+                lokation.Text = customer.Lokation;
+                Note.Text = customer.Note;
+            }
+            
+        }
+
+       
+    } }
