@@ -121,45 +121,7 @@ namespace LagerSystem
 
         }
 
-        //opret knap
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //mobil
-            if (combo.SelectedIndex == 0)
-            {
-                Mobil mo = new Mobil();
-                mo.Note = Note.Text;
-                mo.Lokation = lokation.Text;
-                mo.Ejer = ejer.Text;
-                mo.Afdeling = afd.Text;
-                mo.Maerke = maerke.Text;
-                mo.Model = model.Text;
-                mo.Pris = Pris.Text;
-                mo.Imei = IMEI.Text;
-                mo.Ram = ram.Text;
-                Logik.Instance.addMobil(mo);
-               
-                
-                //Logik.Instance.addMobil(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, IMEI.Text, ram.Text);
-                MessageBox.Show("Mobil tilføjet!!!");
-            }
-            //pc
-            if (combo.SelectedIndex == 1)
-            {
-               // Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, mcA.Text, ram.Text, Processor.Text, grafikkort.Text);
-               // MessageBox.Show("PC tilføjet!!!");
-            }
-            //pc dele
-            if (combo.SelectedIndex == 2)
-            {
-                
-            }
-            //andet
-            if (combo.SelectedIndex == 3)
-            {
-               
-            }
-        }
+       
 
             
 
@@ -222,5 +184,45 @@ namespace LagerSystem
             
         }
 
-       
-    } }
+        private void opretknap_Click(object sender, RoutedEventArgs e)
+        {
+            //mobil
+            if (combo.SelectedIndex == 0)
+            {
+                Mobil mo = new Mobil();
+                mo.Note = Note.Text;
+                mo.Lokation = lokation.Text;
+                mo.Ejer = ejer.Text;
+                mo.Afdeling = afd.Text;
+                mo.Maerke = maerke.Text;
+                mo.Model = model.Text;
+                mo.Pris = Pris.Text;
+                mo.Imei = IMEI.Text;
+                mo.Ram = ram.Text;
+                Logik.Instance.addMobil(mo);
+
+
+                //Logik.Instance.addMobil(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, IMEI.Text, ram.Text);
+                MessageBox.Show("Mobil tilføjet!!!");
+            }
+            //pc
+            if (combo.SelectedIndex == 1)
+            {
+                // Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, mcA.Text, ram.Text, Processor.Text, grafikkort.Text);
+                // MessageBox.Show("PC tilføjet!!!");
+            }
+            //pc dele
+            if (combo.SelectedIndex == 2)
+            {
+
+            }
+            //andet
+            if (combo.SelectedIndex == 3)
+            {
+
+            }
+        
+
+    }
+}
+}
