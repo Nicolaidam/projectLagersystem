@@ -81,11 +81,9 @@ namespace LagerSystem
         //tager imod alt undtagen ID (tanken er at det måske kan genereres i databasen og blive oprettet den vej igennem?)
         internal void addMobil(Mobil m)
         {
-            String maxID = mobilDao.getHighestID();
-            int id = Int32.Parse(maxID)+1;
+
 
             Mobil ii = new Mobil();
-            ii.Id = id.ToString();
             ii.Note = m.Note;
             ii.Lokation = m.Lokation;
             ii.Ejer = m.Ejer;
@@ -96,7 +94,9 @@ namespace LagerSystem
             ii.Imei = m.Imei;
             ii.Ram = m.Ram;
             mobilDao.InsertMobil(ii);
-            addItem(new Mobil {Id = ii.Id, Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
+            String maxID = mobilDao.getHighestID();
+            //int id = Int32.Parse(maxID);
+            addItem(new Mobil {Id = maxID, Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
         }
 
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, int pris, string macA, int ram, string proc, string grafikk)

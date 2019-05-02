@@ -29,7 +29,7 @@ namespace LagerSystem
         public Login()
         {
             InitializeComponent();
-           // d.DeleteMobil(1);
+            d.DeleteMobil(1);
             
             /*
             Mobil m = new Mobil();

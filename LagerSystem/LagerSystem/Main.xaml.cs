@@ -206,7 +206,7 @@ namespace LagerSystem
                 mo.Afdeling = afd.Text;
                 mo.Maerke = maerke.Text;
                 mo.Model = model.Text;
-                String pris = Pris.Text
+                String pris = Pris.Text;
             
                 mo.Pris = Int32.Parse(pris);
                 mo.Imei = IMEI.Text;

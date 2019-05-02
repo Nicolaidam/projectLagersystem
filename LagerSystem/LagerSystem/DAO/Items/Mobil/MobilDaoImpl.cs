@@ -20,14 +20,16 @@ namespace LagerSystem.DAO
         SqlDataReader dr;
         public void DeleteMobil(int id)
         {
+            String id2 = id.ToString();
             con.Open();
-            String syntax = "DELETE FROM Mobil WHERE id=@param1";
-            cmd.Parameters.AddWithValue("@param1", id);
+            String syntax = "DELETE FROM Mobil WHERE id='"+id+"'";
+            //cmd.Parameters.AddWithValue("@param1", id2);
             cmd = new SqlCommand(syntax, con);
             try
             {
-                cmd.CommandType = CommandType.Text;
+              //  cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
+
             }
             catch (SqlException)
             {
@@ -118,15 +120,17 @@ namespace LagerSystem.DAO
 
             try
             {
-                cmd.Parameters.Add("@param1", SqlDbType.VarChar, 30).Value = m.Note;
-                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = m.Lokation;
-                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 30).Value = m.Ejer;
-                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 30).Value = m.Afdeling;
-                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 30).Value = m.Maerke;
-                cmd.Parameters.Add("@param6", SqlDbType.VarChar, 30).Value = m.Model;
-                cmd.Parameters.Add("@param7", SqlDbType.VarChar, 30).Value = m.Pris;
-                cmd.Parameters.Add("@param8", SqlDbType.VarChar, 30).Value = m.Imei;
-                cmd.Parameters.Add("@param9", SqlDbType.VarChar, 30).Value = m.Ram;
+
+                cmd.Parameters.AddWithValue("@param1", m.Note);
+                cmd.Parameters.AddWithValue("@param2", m.Lokation);
+                cmd.Parameters.AddWithValue("@param3", m.Ejer);
+                cmd.Parameters.AddWithValue("@param4", m.Afdeling);
+                cmd.Parameters.AddWithValue("@param5", m.Maerke);
+                cmd.Parameters.AddWithValue("@param6", m.Model);
+                cmd.Parameters.AddWithValue("@param7", m.Pris);
+                cmd.Parameters.AddWithValue("@param8", m.Imei);
+                cmd.Parameters.AddWithValue("@param9", m.Ram);
+              
 
                 cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
