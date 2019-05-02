@@ -31,7 +31,7 @@ namespace LagerSystem
             InitializeComponent();
            // d.DeleteMobil(1);
             
-
+            /*
             Mobil m = new Mobil();
             m.Id = "30";
             m.Note = "ssse";
@@ -45,7 +45,7 @@ namespace LagerSystem
             m.Ram = "se";
 
             d.UpdateMobil(m);
-
+            */
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

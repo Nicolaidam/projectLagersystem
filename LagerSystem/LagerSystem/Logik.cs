@@ -99,7 +99,7 @@ namespace LagerSystem
             addItem(new Mobil {Id = ii.Id, Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
         }
 
-        internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, string pris, string macA, string ram, string proc, string grafikk)
+        internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, int pris, string macA, int ram, string proc, string grafikk)
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 1000);
@@ -119,7 +119,7 @@ namespace LagerSystem
             return b;
         }
 
-        internal void OpdaterMobil(string id, string note, string lokation, string ejer, string afdeling, string maerke, string model, string pris, string ram, string imei)
+        internal void OpdaterMobil(string id, string note, string lokation, string ejer, string afdeling, string maerke, string model, int pris, int ram, string imei)
         {
 
             for (int i = 0; i < alleMobiler.Count; i++)

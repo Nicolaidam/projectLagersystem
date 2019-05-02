@@ -9,10 +9,10 @@ namespace LagerSystem.Model.Items_typer
     class Mobil : Item
     {
         private String imei;
-        private String ram;
+        private int ram;
 
         public string Imei { get => imei; set => imei = value; }
-        public String Ram { get => ram; set => ram = value; }
+        public int Ram { get => ram; set => ram = value; }
     }
 
 }

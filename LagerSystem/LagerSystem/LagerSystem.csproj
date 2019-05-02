@@ -76,10 +76,8 @@
     </ApplicationDefinition>
     <Compile Include="DAO\Bruger\IBrugerDao.cs" />
     <Compile Include="DAO\Bruger\BrugerDaoImpl.cs" />
-    <Compile Include="DAO\Items\PC\IPCDao.cs" />
     <Compile Include="DAO\Items\Mobil\MobilDaoImpl.cs" />
     <Compile Include="DAO\Items\Mobil\IMobilDao.cs" />
-    <Compile Include="DAO\Items\PC\PCDaoImpl.cs" />
     <Compile Include="Logik.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

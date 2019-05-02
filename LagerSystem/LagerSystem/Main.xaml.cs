@@ -179,7 +179,7 @@ namespace LagerSystem
                 {
                     Mobil mob = (Mobil)dataGridv2.SelectedItem;
                     IMEI.Text = mob.Imei;
-                    ram.Text = mob.Ram;
+                    ram.Text = mob.Ram.ToString();
 
                 }
                 MessageBox.Show("Ejer: " + customer.Ejer);
@@ -187,7 +187,7 @@ namespace LagerSystem
                 ejer.Text = customer.Ejer;
                 maerke.Text = customer.Maerke;
                 model.Text = customer.Model;
-                Pris.Text = customer.Pris;
+                Pris.Text = customer.Pris.ToString();
                 lokation.Text = customer.Lokation;
                 Note.Text = customer.Note;
             }
@@ -206,9 +206,11 @@ namespace LagerSystem
                 mo.Afdeling = afd.Text;
                 mo.Maerke = maerke.Text;
                 mo.Model = model.Text;
-                mo.Pris = Pris.Text;
+                String pris = Pris.Text
+            
+                mo.Pris = Int32.Parse(pris);
                 mo.Imei = IMEI.Text;
-                mo.Ram = ram.Text;
+                mo.Ram = Int32.Parse(ram.Text);
                 Logik.Instance.addMobil(mo);
 
 
@@ -265,7 +267,7 @@ namespace LagerSystem
             if (customer.Id.Contains("m"))
             {
                 Mobil mob = (Mobil)dataGridv2.SelectedItem;
-                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, ram.Text, IMEI.Text);
+                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
                
             }
             dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;

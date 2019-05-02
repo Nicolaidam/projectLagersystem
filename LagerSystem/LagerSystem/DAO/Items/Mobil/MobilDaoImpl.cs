@@ -68,9 +68,9 @@ namespace LagerSystem.DAO
                 ii.Afdeling = temp5;
                 ii.Maerke = temp6;
                 ii.Model = temp7;
-                ii.Pris = temp8;
+                ii.Pris = Int32.Parse(temp8);
                 ii.Imei = temp9;
-                ii.Ram = temp10;
+                ii.Ram = Int32.Parse(temp10);
                 hs.Add(ii);
 
             }

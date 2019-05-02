@@ -9,7 +9,7 @@ namespace LagerSystem.Model.Items_typer
     class PC : Item
     {
         private String macAdresse;
-        private String ram;
+        private int ram;
         private String processor;
         private String grafikkort;
 
@@ -17,7 +17,7 @@ namespace LagerSystem.Model.Items_typer
             get => macAdresse; 
             set => macAdresse = value; 
         }
-        public string Ram{ 
+        public int Ram{ 
             get => ram; 
             set => ram = value; 
         }
