@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using LagerSystem.DAO;
 using LagerSystem.Model;
 using LagerSystem.Model.Items_typer;
@@ -45,15 +46,25 @@ namespace LagerSystem
             //List<Item> h = itemDao.GetAllItems();
 
             //midlertidig metode der kun tager alle mobiler.. Der kommer en ItemDao der giver en liste med ALLE elementer
-            List<Mobil> h = mobilDao.GetAllMobil();
-
-            if (h.Count != 0)
+            try
             {
-                for (int i = 0; i < h.Count; i++)
+                List<Mobil> h = mobilDao.GetAllMobil();
+                if (h.Count != 0)
                 {
-                    addItem(h[i]);
+                    for (int i = 0; i < h.Count; i++)
+                    {
+                        addItem(h[i]);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                string message = "Fejl :/";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+
+            
 
 
         }
@@ -93,8 +104,26 @@ namespace LagerSystem
             ii.Pris = m.Pris;
             ii.Imei = m.Imei;
             ii.Ram = m.Ram;
-            mobilDao.InsertMobil(ii);
-            String maxID = mobilDao.getHighestID();
+
+            String maxID = "";
+
+
+            if (!mobilDao.InsertMobil(ii))
+            {
+                string message = "Fejl i databasen";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+            try
+            {
+                maxID = mobilDao.getHighestID();
+            }
+            catch (Exception)
+            {
+                string message = "Fejl :/";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
             //int id = Int32.Parse(maxID);
             addItem(new Mobil {Id = maxID, Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
         }
@@ -137,21 +166,19 @@ namespace LagerSystem
                     alleMobiler[i].Ram = ram;
                     alleMobiler[i].Imei = imei;
                     string forhelf = id.Remove(0, 2);
-                    mobilDao.UpdateMobil(alleMobiler[i]);
+
+                    if (!mobilDao.UpdateMobil(alleMobiler[i]))
+        
+                        {
+                            string message = "Fejl i databasen";
+                            string title = "Fejl";
+                            MessageBox.Show(message, title);
+                        }
                 }
                 // evt også søg igennem alle items og slet den der. 
             }
 
 
-        }
-
-        // denne bruges ikke mere TROR JEG
-        internal void OpdaterMobiler()
-        {
-            for (int i = 0; i < alleMobiler.Count; i++)
-            {
-                // mobilDao.UpdateMobil(alleMobiler[i]);
-            }
         }
 
         internal void SletMobil(string id, string text1, string text2, string text3, string text4, string text5, string text6, string text7, string text8, string text9)
@@ -161,7 +188,13 @@ namespace LagerSystem
                 if (alleMobiler[i].Id == id)
                 {
                     string ids = id.Replace("mo", "");
-                    mobilDao.DeleteMobil(Convert.ToInt32(ids));
+                    if (!mobilDao.DeleteMobil(Convert.ToInt32(ids)))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+
                     alleMobiler.RemoveAt(i);
 
                 }

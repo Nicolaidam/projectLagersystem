@@ -18,25 +18,26 @@ namespace LagerSystem.DAO
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
-        public void DeleteMobil(int id)
+        public Boolean DeleteMobil(int id)
         {
+            Boolean b = true;
             String id2 = id.ToString();
-            con.Open();
+            
             String syntax = "DELETE FROM Mobil WHERE id=@param1";
-            //cmd.Parameters.AddWithValue("@param1", id2);
             cmd = new SqlCommand(syntax, con);
             cmd.Parameters.AddWithValue("@param1", id.ToString());
             try
             {
-              //  cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
                 cmd.ExecuteNonQuery();
 
             }
             catch (SqlException)
             {
-                //TODO lav fejl medd - evt lav specielt return ved fejl
+                b = false;
             }
             con.Close();
+            return b;
         }
 
         public List<Mobil> GetAllMobil() {
@@ -82,12 +83,9 @@ namespace LagerSystem.DAO
             return hs;
         }
 
-        public void InsertMobil(Mobil m) {
+        public Boolean InsertMobil(Mobil m) {
 
-            //Evt return true hvis insert kommer igennem
-            
-            
-            //ID skal auto incrementes i db
+            Boolean b = true;
             
             String syntax = "INSERT INTO Mobil (note, lokation, ejer, afdeling, maerke, model, pris, imei, ram) VALUES(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
             cmd = new SqlCommand(syntax, con);
@@ -102,58 +100,69 @@ namespace LagerSystem.DAO
             cmd.Parameters.AddWithValue("@param7", m.Pris);
             cmd.Parameters.AddWithValue("@param8", m.Imei);
             cmd.Parameters.AddWithValue("@param9", m.Ram);
-         
-            
-            con.Open();
-            cmd.ExecuteNonQuery();
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                b = false;
+            }
             con.Close();
-            
+            return b;
         }
 
         public void UpdateMobil(Mobil m)
         {
-            con.Open();
+            Boolean b = true;
+           
 
             string iddd = m.Id.Replace("mo", "");        
             String syntax = "UPDATE Mobil SET note=@param1,lokation=@param2,ejer=@param3," +
                 "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,imei=@param8,ram=@param9 WHERE id="+iddd;
             cmd = new SqlCommand(syntax, con);
 
+            cmd.Parameters.AddWithValue("@param1", m.Note);
+            cmd.Parameters.AddWithValue("@param2", m.Lokation);
+            cmd.Parameters.AddWithValue("@param3", m.Ejer);
+            cmd.Parameters.AddWithValue("@param4", m.Afdeling);
+            cmd.Parameters.AddWithValue("@param5", m.Maerke);
+            cmd.Parameters.AddWithValue("@param6", m.Model);
+            cmd.Parameters.AddWithValue("@param7", m.Pris);
+            cmd.Parameters.AddWithValue("@param8", m.Imei);
+            cmd.Parameters.AddWithValue("@param9", m.Ram);
+
+
+            cmd.CommandType = CommandType.Text;
+
             try
             {
-
-                cmd.Parameters.AddWithValue("@param1", m.Note);
-                cmd.Parameters.AddWithValue("@param2", m.Lokation);
-                cmd.Parameters.AddWithValue("@param3", m.Ejer);
-                cmd.Parameters.AddWithValue("@param4", m.Afdeling);
-                cmd.Parameters.AddWithValue("@param5", m.Maerke);
-                cmd.Parameters.AddWithValue("@param6", m.Model);
-                cmd.Parameters.AddWithValue("@param7", m.Pris);
-                cmd.Parameters.AddWithValue("@param8", m.Imei);
-                cmd.Parameters.AddWithValue("@param9", m.Ram);
+                con.Open();
               
-
-                cmd.CommandType = CommandType.Text;
                 cmd.ExecuteNonQuery();
+                
             }
             catch (SqlException)
             {
-                //TODO lav fejl medd - evt lav specielt return ved fejl
+                b = false;
             }
             con.Close();
+            return b;
         }
-        public String getHighestID()
+        public Boolean getHighestID()
         {
             String ret = "";
             con.Open();
             String syntax = "SELECT MAX(ID) FROM Mobil";
 
             cmd = new SqlCommand(syntax, con);
+
             dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                ret = dr[0].ToString(); //id
-               
 
             }
             con.Close();

@@ -10,10 +10,9 @@ namespace LagerSystem.DAO
     interface IMobilDao
     {
         List<Mobil> GetAllMobil();
-        void UpdateMobil(Mobil mobil);
-        void DeleteMobil(int id);
-        void InsertMobil(Mobil mobil);
-
+        Boolean UpdateMobil(Mobil mobil);
+        Boolean DeleteMobil(int id);
+        Boolean InsertMobil(Mobil mobil);
         String getHighestID();
 
     }
