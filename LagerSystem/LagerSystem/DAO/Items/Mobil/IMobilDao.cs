@@ -13,5 +13,8 @@ namespace LagerSystem.DAO
         void UpdateMobil(Mobil mobil);
         void DeleteMobil(int id);
         void InsertMobil(Mobil mobil);
+
+        String getHighestID();
+
     }
 }

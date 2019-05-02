@@ -13,9 +13,9 @@ namespace LagerSystem.DAO
     {
 
         //Jacob 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         // Nico
-        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         public void DeleteMobil(int id)
@@ -136,6 +136,23 @@ namespace LagerSystem.DAO
                 //TODO lav fejl medd - evt lav specielt return ved fejl
             }
             con.Close();
+        }
+        public String getHighestID()
+        {
+            String ret = "";
+            con.Open();
+            String syntax = "SELECT MAX(ID) FROM Mobil";
+
+            cmd = new SqlCommand(syntax, con);
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+               ret = dr[0].ToString(); //id
+               
+
+            }
+            con.Close();
+            return ret;
         }
         
       
