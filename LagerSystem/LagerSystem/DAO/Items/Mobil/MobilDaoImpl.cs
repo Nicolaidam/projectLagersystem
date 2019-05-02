@@ -22,9 +22,10 @@ namespace LagerSystem.DAO
         {
             String id2 = id.ToString();
             con.Open();
-            String syntax = "DELETE FROM Mobil WHERE id='"+id+"'";
+            String syntax = "DELETE FROM Mobil WHERE id=@param1";
             //cmd.Parameters.AddWithValue("@param1", id2);
             cmd = new SqlCommand(syntax, con);
+            cmd.Parameters.AddWithValue("@param1", id.ToString());
             try
             {
               //  cmd.CommandType = CommandType.StoredProcedure;
