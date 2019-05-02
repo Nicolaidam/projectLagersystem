@@ -114,7 +114,7 @@ namespace LagerSystem.DAO
             return b;
         }
 
-        public void UpdateMobil(Mobil m)
+        public Boolean UpdateMobil(Mobil m)
         {
             Boolean b = true;
            
@@ -124,6 +124,7 @@ namespace LagerSystem.DAO
                 "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,imei=@param8,ram=@param9 WHERE id="+iddd;
             cmd = new SqlCommand(syntax, con);
 
+            
             cmd.Parameters.AddWithValue("@param1", m.Note);
             cmd.Parameters.AddWithValue("@param2", m.Lokation);
             cmd.Parameters.AddWithValue("@param3", m.Ejer);
@@ -151,7 +152,7 @@ namespace LagerSystem.DAO
             con.Close();
             return b;
         }
-        public Boolean getHighestID()
+        public String getHighestID()
         {
             String ret = "";
             con.Open();

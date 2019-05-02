@@ -78,6 +78,10 @@
     <Compile Include="DAO\Bruger\BrugerDaoImpl.cs" />
     <Compile Include="DAO\Items\Mobil\MobilDaoImpl.cs" />
     <Compile Include="DAO\Items\Mobil\IMobilDao.cs" />
+    <Compile Include="DAO\Items\PCDele\IPCDeleDao.cs" />
+    <Compile Include="DAO\Items\PCDele\PCDeleDaoImpl.cs" />
+    <Compile Include="DAO\Items\PC\IPCDao.cs" />
+    <Compile Include="DAO\Items\PC\PCDaoImpl.cs" />
     <Compile Include="Logik.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -141,5 +145,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
