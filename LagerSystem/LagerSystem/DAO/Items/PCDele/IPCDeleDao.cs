@@ -9,7 +9,7 @@ namespace LagerSystem.DAO
 {
     interface IPCDeleDao
     {
-        List<PCDele> GetAllPC();
+        List<PCDele> GetAllPCDele();
         Boolean UpdatePCDele(PCDele pcdele);
         Boolean DeletePCDele(int id);
         Boolean InsertPCDele(PCDele pcdele);

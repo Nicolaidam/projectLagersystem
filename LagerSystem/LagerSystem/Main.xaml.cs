@@ -38,8 +38,6 @@ namespace LagerSystem
                 Add("PC");
             combo.Items.
                 Add("PC-dele");
-            combo.Items.
-                Add("Andet");
            Logik.Instance.LoadItems();
            dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             dataGridv2.IsReadOnly = true;
@@ -220,20 +218,17 @@ namespace LagerSystem
             //pc
             if (combo.SelectedIndex == 1)
             {
-                // Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, mcA.Text, ram.Text, Processor.Text, grafikkort.Text);
-                // MessageBox.Show("PC tilføjet!!!");
+                Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Convert.ToInt32(Pris.Text), mcA.Text, Convert.ToInt32(ram.Text), Processor.Text, grafikkort.Text);
+                MessageBox.Show("PC tilføjet!!!");
             }
             //pc dele
             if (combo.SelectedIndex == 2)
             {
-
-            }
-            //andet
-            if (combo.SelectedIndex == 3)
-            {
-
+                Logik.Instance.addPcDel(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Convert.ToInt32(Pris.Text));
+                MessageBox.Show("PC-del tilføjet!!!");
             }
 
+            RydTekstFelter();
             opretknap.IsEnabled = false;
 
     }

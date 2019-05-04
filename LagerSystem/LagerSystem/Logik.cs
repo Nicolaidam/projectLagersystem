@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using LagerSystem.DAO;
+using LagerSystem.DAO.Items.PC;
+using LagerSystem.DAO.Items.PCDele;
 using LagerSystem.Model;
 using LagerSystem.Model.Items_typer;
 
@@ -14,10 +16,13 @@ namespace LagerSystem
     class Logik
     {
         IMobilDao mobilDao = new MobilDaoImpl();
+        IPCDao pcDao = new PCDaoImpl();
+        IPCDeleDao pcDeleDao = new PCDeleDaoImpl();
         IBrugerDao brugerDao = new BrugerDaoImpl();
         ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
         ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
         ObservableCollection<PC> allePC = new ObservableCollection<PC>();
+        ObservableCollection<PCDele> allePcDele = new ObservableCollection<PCDele>();
         private static Logik instance;
 
         private Logik() { }
@@ -56,6 +61,24 @@ namespace LagerSystem
                         addItem(h[i]);
                     }
                 }
+
+                List<PC> pcer = pcDao.GetAllPC();
+                if (pcer.Count != 0)
+                {
+                    for (int i = 0; i < pcer.Count; i++)
+                    {
+                        addItem(pcer[i]);
+                    }
+                }
+
+                List<PCDele> pcdele = pcDeleDao.GetAllPCDele();
+                if (pcdele.Count != 0)
+                {
+                    for (int i = 0; i < pcdele.Count; i++)
+                    {
+                        addItem(pcdele[i]);
+                    }
+                }
             }
             catch (Exception)
             {
@@ -85,6 +108,12 @@ namespace LagerSystem
                 item.Id = "pc" + item.Id;
                 allePC.Add((PC)item);
             }
+            if (item is PCDele)
+            {
+                item.Id = "pcdel" + item.Id;
+                allePcDele.Add((PCDele)item);
+            }
+
         }
 
 
@@ -130,11 +159,78 @@ namespace LagerSystem
 
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, int pris, string macA, int ram, string proc, string grafikk)
         {
-            Random random = new Random();
-            int randomNumber = random.Next(0, 1000);
-            string id = "" + randomNumber;
-            addItem(new PC { Id = id, Note = note, Lokation = lokation, Ejer = ejer, Afdeling = afd, Maerke = maerke, Model = model, Pris = pris, MacAdresse = macA, Ram = ram, Processor = proc, Grafikkort = grafikk });
+            PC nyPC = new PC();
+            nyPC.Note = note;
+            nyPC.Lokation = lokation;
+            nyPC.Ejer = ejer;
+            nyPC.Afdeling = afd;
+            nyPC.Maerke = maerke;
+            nyPC.Model = model;
+            nyPC.Pris = pris;
+            nyPC.MacAdresse = macA;
+            nyPC.Ram = ram;
+            nyPC.Processor = proc;
+            nyPC.Grafikkort = grafikk;
+
+            String maxID = "";
+
+
+            if (!pcDao.InsertPC(nyPC))
+            {
+                string message = "Fejl i databasen";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+            try
+            {
+                maxID = pcDao.getHighestID();
+            }
+            catch (Exception)
+            {
+                string message = "Fejl :/";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+            //int id = Int32.Parse(maxID);
+            addItem(new PC { Id = maxID, Note = nyPC.Note, Lokation = nyPC.Lokation, Ejer = nyPC.Ejer, Afdeling = nyPC.Afdeling, Maerke = nyPC.Maerke, Model = nyPC.Model, Pris = nyPC.Pris, MacAdresse = nyPC.MacAdresse, Ram = nyPC.Ram, Grafikkort = nyPC.Grafikkort, Processor=nyPC.Processor });
+            
+               }
+
+        internal void addPcDel(string note, string lokation, string ejer, string afd, string maerke, string model, int pris)
+        {
+            PCDele nyPCDel = new PCDele();
+            nyPCDel.Note = note;
+            nyPCDel.Lokation = lokation;
+            nyPCDel.Ejer = ejer;
+            nyPCDel.Afdeling = afd;
+            nyPCDel.Maerke = maerke;
+            nyPCDel.Model = model;
+            nyPCDel.Pris = pris;
+            
+            String maxID = "";
+
+
+            if (!pcDeleDao.InsertPCDele(nyPCDel))
+            {
+                string message = "Fejl i databasen";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+            try
+            {
+                maxID = pcDeleDao.getHighestID();
+            }
+            catch (Exception)
+            {
+                string message = "Fejl :/";
+                string title = "Fejl";
+                MessageBox.Show(message, title);
+            }
+            //int id = Int32.Parse(maxID);
+            addItem(new PCDele { Id = maxID, Note = nyPCDel.Note, Lokation = nyPCDel.Lokation, Ejer = nyPCDel.Ejer, Afdeling = nyPCDel.Afdeling, Maerke = nyPCDel.Maerke, Model = nyPCDel.Model, Pris = nyPCDel.Pris});
+
         }
+
 
         internal Boolean verificerBruger(String brugernavn, String password)
         {

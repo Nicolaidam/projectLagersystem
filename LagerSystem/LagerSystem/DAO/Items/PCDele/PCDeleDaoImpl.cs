@@ -12,9 +12,9 @@ namespace LagerSystem.DAO.Items.PCDele
     class PCDeleDaoImpl : IPCDeleDao
     {
         //Jacob 
-        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         // Nico
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+       // SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
 
@@ -40,7 +40,7 @@ namespace LagerSystem.DAO.Items.PCDele
             return b;
         }
 
-        public List<Model.Items_typer.PCDele> GetAllPC()
+        public List<Model.Items_typer.PCDele> GetAllPCDele()
         {
             var hs = new List<Model.Items_typer.PCDele>();
 
