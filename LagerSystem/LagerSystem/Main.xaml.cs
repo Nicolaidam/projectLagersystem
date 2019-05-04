@@ -134,6 +134,7 @@ namespace LagerSystem
             if (mobiltjek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun mobiler!");
+                Logik.Instance.GetAlleMobiler();
                 dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
             }
             if (mobiltjek.IsChecked == false)
@@ -149,6 +150,7 @@ namespace LagerSystem
             if (pcchek.IsChecked == true)
             {
                 MessageBox.Show("Der vises kun PC'er!");
+                Logik.Instance.GetAllePcer();
                 dataGridv2.ItemsSource = Logik.Instance.AllePCs;
             }
             if (pcchek.IsChecked == false)
@@ -166,8 +168,7 @@ namespace LagerSystem
        
         private void dataGridv2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(Logik.Instance.AlleMobiler[0].Id.Remove(0,2));
-            if(dataGridv2.SelectedIndex != -1)
+           if(dataGridv2.SelectedIndex != -1)
             {
                 aendre.IsEnabled = true;
                 slet.IsEnabled = true;
@@ -179,6 +180,14 @@ namespace LagerSystem
                     IMEI.Text = mob.Imei;
                     ram.Text = mob.Ram.ToString();
 
+                }
+                if (customer.Id.Contains("p"))
+                {
+                    PC pc = (PC)dataGridv2.SelectedItem;
+                    ram.Text = Convert.ToString(pc.Ram);
+                    mcA.Text = pc.MacAdresse;
+                    Processor.Text = pc.Processor;
+                    grafikkort.Text = pc.Grafikkort;
                 }
                 MessageBox.Show("Ejer: " + customer.Ejer);
                 afd.Text = customer.Afdeling;
@@ -254,6 +263,7 @@ namespace LagerSystem
             ram.Text = "";
             grafikkort.Text = "";
             Processor.Text = "";
+            mcA.Text = "";
         }
 
         private void aendre_Click(object sender, RoutedEventArgs e)
@@ -265,10 +275,21 @@ namespace LagerSystem
                 Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
                
             }
-            dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
+            if (customer.Id.Contains("p"))
+            {
+                PC pc = (PC)dataGridv2.SelectedItem;
+                Logik.Instance.OpdaterPc(pc.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), mcA.Text, Processor.Text, grafikkort.Text);
+            }
+            if (customer.Id.Contains("d"))
+            {
+                PCDele pcdel = (PCDele)dataGridv2.SelectedItem;
+                Logik.Instance.OpdaterPcDele(pcdel.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text));
+            }
+            dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             aendre.IsEnabled = false;
             fortryd.IsEnabled = false;
             slet.IsEnabled = false;
+            RydTekstFelter();
         }
 
         private void slet_Click(object sender, RoutedEventArgs e)
@@ -280,10 +301,21 @@ namespace LagerSystem
                 Logik.Instance.SletMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, ram.Text, IMEI.Text);
 
             }
-            dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
+            if (customer.Id.Contains("p"))
+            {
+                PC pc = (PC)dataGridv2.SelectedItem;
+                Logik.Instance.SletPc(pc.Id);
+            }
+            if (customer.Id.Contains("d"))
+            {
+                PCDele pc = (PCDele)dataGridv2.SelectedItem;
+                Logik.Instance.SletPcDel(pc.Id);
+            }
+            dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             aendre.IsEnabled = false;
             fortryd.IsEnabled = false;
             slet.IsEnabled = false;
+            RydTekstFelter();
         }
     }
 }

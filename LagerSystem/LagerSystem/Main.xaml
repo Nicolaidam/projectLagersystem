@@ -40,7 +40,7 @@
                 <DataGridTextColumn Header="Mærke" Binding="{Binding Maerke}" />
                 <DataGridTextColumn Header="Model" Binding="{Binding Model}" />
                 <DataGridTextColumn Header="Ejer" Binding="{Binding Ejer}" />
-                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afd}" />
+                <DataGridTextColumn Header="Afdeling" Binding="{Binding Afdeling}" />
                 <DataGridTextColumn Header="Lokation" Binding="{Binding Lokation}" />
                 <DataGridTextColumn Header="Pris" Binding="{Binding Pris}" />
                 <DataGridTextColumn Header="Note" Binding="{Binding Note}" />

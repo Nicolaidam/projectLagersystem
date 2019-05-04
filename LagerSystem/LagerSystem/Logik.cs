@@ -99,23 +99,34 @@ namespace LagerSystem
             AlleItems.Add(item);
             if (item is Mobil)
             {
-                item.Id = "mo" + item.Id;
-                alleMobiler.Add((Mobil)item);
+                item.Id = "m" + item.Id;
+               // alleMobiler.Add((Mobil)item);
 
             }
             if (item is PC)
             {
-                item.Id = "pc" + item.Id;
-                allePC.Add((PC)item);
+                item.Id = "p" + item.Id;
+                //allePC.Add((PC)item);
             }
             if (item is PCDele)
             {
-                item.Id = "pcdel" + item.Id;
-                allePcDele.Add((PCDele)item);
+                item.Id = "d" + item.Id;
+              //  allePcDele.Add((PCDele)item);
             }
-
+            
         }
-
+        internal void GetAlleMobiler()
+        {
+            alleMobiler.Clear();
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if(alleItems[i] is Mobil)
+                {
+                    alleMobiler.Add((Mobil)alleItems[i]);
+                }
+            }
+        }
+        
 
 
         //tager imod alt undtagen ID (tanken er at det måske kan genereres i databasen og blive oprettet den vej igennem?)
@@ -155,6 +166,18 @@ namespace LagerSystem
             }
             //int id = Int32.Parse(maxID);
             addItem(new Mobil {Id = maxID, Note = ii.Note, Lokation = ii.Lokation, Ejer = ii.Ejer, Afdeling = ii.Afdeling, Maerke = ii.Maerke, Model = ii.Model, Pris = ii.Pris, Imei = ii.Imei, Ram = ii.Ram });
+        }
+
+        internal void GetAllePcer()
+        {
+            allePC.Clear();
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if (alleItems[i] is PC)
+                {
+                    allePC.Add((PC)alleItems[i]);
+                }
+            }
         }
 
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, int pris, string macA, int ram, string proc, string grafikk)
@@ -247,43 +270,147 @@ namespace LagerSystem
         internal void OpdaterMobil(string id, string note, string lokation, string ejer, string afdeling, string maerke, string model, int pris, int ram, string imei)
         {
 
-            for (int i = 0; i < alleMobiler.Count; i++)
+            for (int i = 0; i < alleItems.Count; i++)
             {
-                if (alleMobiler[i].Id == id)
+
+                if(alleItems[i].Id == id)
                 {
+                    Mobil opM = new Mobil();
+                    opM.Id = id;
+                    opM.Note = note;
+                    opM.Lokation = lokation;
+                    opM.Afdeling = afdeling;
+                    opM.Ejer = ejer;
+                    opM.Maerke = maerke;
+                    opM.Model = model;
+                    opM.Pris = pris;
+                    opM.Ram = ram;
+                    opM.Imei = imei;
+                    alleItems[i] = opM;
 
-                    alleMobiler[i].Note = note;
-                    alleMobiler[i].Lokation = lokation;
-                    alleMobiler[i].Ejer = ejer;
-                    alleMobiler[i].Afdeling = afdeling;
-                    alleMobiler[i].Maerke = maerke;
-                    alleMobiler[i].Model = model;
-                    alleMobiler[i].Pris = pris;
-                    alleMobiler[i].Ram = ram;
-                    alleMobiler[i].Imei = imei;
-                    string forhelf = id.Remove(0, 2);
-
-                    if (!mobilDao.UpdateMobil(alleMobiler[i]))
-        
-                        {
-                            string message = "Fejl i databasen";
-                            string title = "Fejl";
-                            MessageBox.Show(message, title);
-                        }
+                    if (!mobilDao.UpdateMobil((Mobil)alleItems[i]))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+                }
+                                  
                 }
                 // evt også søg igennem alle items og slet den der. 
             }
 
+        internal void OpdaterPc(string id, string text1, string text2, string text3, string text4, string text5, string text6, int v1, int v2, string text7, string text8, string text9)
+        {
+            for (int i = 0; i < alleItems.Count; i++)
+            {
 
+                if (alleItems[i].Id == id)
+                {
+                    PC opM = new PC();
+                    opM.Id = id;
+                    opM.Note = text1;
+                    opM.Lokation = text2;
+                    opM.Afdeling = text3;
+                    opM.Ejer = text4;
+                    opM.Maerke = text5;
+                    opM.Model = text6;
+                    opM.Pris = v1;
+                    opM.Ram = v2;
+                    opM.MacAdresse = text7;
+                    opM.Processor = text8;
+                    opM.Grafikkort = text9;
+                 
+                    alleItems[i] = opM;
+
+                    if (!pcDao.UpdatePC((PC)alleItems[i]))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+                }
+
+            }
+        }
+
+        internal void SletPc(string id)
+        {
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if (alleItems[i].Id == id)
+                {
+                    string ids = id.Replace("p", "");
+                    if (!pcDao.DeletePC(Convert.ToInt32(ids)))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+
+                    alleItems.RemoveAt(i);
+
+                }
+            }
+        }
+
+        internal void SletPcDel(string id)
+        {
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if (alleItems[i].Id == id)
+                {
+                    string ids = id.Replace("d", "");
+                    if (!pcDeleDao.DeletePCDele(Convert.ToInt32(ids)))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+
+                    alleItems.RemoveAt(i);
+
+                }
+            }
+        }
+
+        internal void OpdaterPcDele(string id, string text1, string text2, string text3, string text4, string text5, string text6, int v)
+        {
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+
+                if (alleItems[i].Id == id)
+                {
+                    PCDele opM = new PCDele();
+                    opM.Id = id;
+                    opM.Note = text1;
+                    opM.Lokation = text2;
+                    opM.Afdeling = text3;
+                    opM.Ejer = text4;
+                    opM.Maerke = text5;
+                    opM.Model = text6;
+                    opM.Pris = v;                    
+
+                    alleItems[i] = opM;
+
+                    if (!pcDeleDao.UpdatePCDele((PCDele)alleItems[i]))
+                    {
+                        string message = "Fejl i databasen";
+                        string title = "Fejl";
+                        MessageBox.Show(message, title);
+                    }
+                }
+
+            }
         }
 
         internal void SletMobil(string id, string text1, string text2, string text3, string text4, string text5, string text6, string text7, string text8, string text9)
         {
-            for (int i = 0; i < alleMobiler.Count; i++)
+            for (int i = 0; i < alleItems.Count; i++)
             {
-                if (alleMobiler[i].Id == id)
+                if (alleItems[i].Id == id)
                 {
-                    string ids = id.Replace("mo", "");
+                    string ids = id.Replace("m", "");
                     if (!mobilDao.DeleteMobil(Convert.ToInt32(ids)))
                     {
                         string message = "Fejl i databasen";
@@ -291,10 +418,13 @@ namespace LagerSystem
                         MessageBox.Show(message, title);
                     }
 
-                    alleMobiler.RemoveAt(i);
+                    alleItems.RemoveAt(i);
 
                 }
             }
+
         }
     }
-}
+
+        
+    }

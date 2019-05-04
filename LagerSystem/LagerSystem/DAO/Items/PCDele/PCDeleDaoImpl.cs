@@ -12,9 +12,9 @@ namespace LagerSystem.DAO.Items.PCDele
     class PCDeleDaoImpl : IPCDeleDao
     {
         //Jacob 
-        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-91SF1OG\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         // Nico
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("Data Source=DESKTOP-R6AA641\\SQLEXPRESS;Initial Catalog=lagersystem;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
 
@@ -131,7 +131,7 @@ namespace LagerSystem.DAO.Items.PCDele
             Boolean b = true;
 
 
-            string iddd = pcdele.Id.Replace("pcDel", "");
+            string iddd = pcdele.Id.Replace("d", "");
             String syntax = "UPDATE PCDele SET note=@param1,lokation=@param2,ejer=@param3," +
                 "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7 WHERE id=" + iddd;
             cmd = new SqlCommand(syntax, con);
@@ -152,7 +152,7 @@ namespace LagerSystem.DAO.Items.PCDele
             {
                 con.Open();
 
-                cmd.ExecuteNonQuery();
+              cmd.ExecuteNonQuery();
 
             }
             catch (SqlException)
