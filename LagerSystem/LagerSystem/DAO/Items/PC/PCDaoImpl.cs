@@ -144,7 +144,7 @@ namespace LagerSystem.DAO.Items.PC
             Boolean b = true;
 
 
-            string iddd = pc.Id.Replace("pc", "");
+            string iddd = pc.Id.Replace("p", "");
             String syntax = "UPDATE PC SET note=@param1,lokation=@param2,ejer=@param3," +
                 "afdeling=@param4,maerke=@param5,model=@param6,pris=@param7,mac=@param8,ram=@param9,processor=@param10,grafikkort=@param11 WHERE id=" + iddd;
             cmd = new SqlCommand(syntax, con);

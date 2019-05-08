@@ -21,6 +21,8 @@ namespace LagerSystem
         IBrugerDao brugerDao = new BrugerDaoImpl();
         ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
         ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
+        ObservableCollection<Item> alleMedAfd = new ObservableCollection<Item>();
+        ObservableCollection<Item> alleSog = new ObservableCollection<Item>();
         ObservableCollection<PC> allePC = new ObservableCollection<PC>();
         ObservableCollection<PCDele> allePcDele = new ObservableCollection<PCDele>();
         private static Logik instance;
@@ -44,6 +46,11 @@ namespace LagerSystem
         {
             get => alleMobiler;
             set => alleMobiler = value;
+        }
+        internal ObservableCollection<Item> AlleSog
+        {
+            get => alleSog;
+            set => alleSog = value;
         }
         internal ObservableCollection<PC> AllePCs { get => allePC; set => allePC = value; }
         internal void LoadItems()
@@ -126,7 +133,18 @@ namespace LagerSystem
                 }
             }
         }
-        
+        internal void GetAlleMedAfd(int afd)
+        {
+            alleMedAfd.Clear();
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if (Convert.ToInt32(alleItems[i].Afdeling) == afd)
+                {
+                    alleMedAfd.Add((Item)alleItems[i]);
+                }
+            }
+        }
+
 
 
         //tager imod alt undtagen ID (tanken er at det måske kan genereres i databasen og blive oprettet den vej igennem?)
@@ -180,6 +198,22 @@ namespace LagerSystem
             }
         }
 
+        internal ObservableCollection<PCDele> AllePCDELE
+        {
+            get => allePcDele;
+            set => allePcDele = value;
+        }
+        internal void GetAllePCDELE()
+        {
+            allePcDele.Clear();
+            for (int i = 0; i < alleItems.Count; i++)
+            {
+                if (alleItems[i] is PCDele)
+                {
+                    allePcDele.Add((PCDele)alleItems[i]);
+                }
+            }
+        }
         internal void addPc(string note, string lokation, string ejer, string afd, string maerke, string model, int pris, string macA, int ram, string proc, string grafikk)
         {
             PC nyPC = new PC();
@@ -267,6 +301,7 @@ namespace LagerSystem
             return b;
         }
 
+        
         internal void OpdaterMobil(string id, string note, string lokation, string ejer, string afdeling, string maerke, string model, int pris, int ram, string imei)
         {
 
@@ -334,8 +369,138 @@ namespace LagerSystem
             }
         }
 
-        internal void SletPc(string id)
+        internal void Sog(bool mobiler, bool pcer, bool pcdele, string afd, string ejer)
         {
+            alleSog.Clear();
+            /*  if (mobiler && pcer && pcdele)
+              {
+                  if(afd.Length > 0)
+                  {
+                      for(int i = 0; i < alleItems.Count; i++)
+                      {
+                          if(alleItems[i].Afdeling == afd)
+                          {
+                              alleSog.Add(alleItems[i]);
+                          }
+
+                      }
+                  }
+                  if (ejer.Length > 0)
+                  {
+                      for (int i = 0; i < alleItems.Count; i++)
+                      {
+                          if (alleItems[i].Ejer == "JJJ")
+                          {
+                              alleSog.Add(alleItems[i]);
+                          }
+
+                      }
+                  }
+
+              }
+              */
+            if (mobiler)
+            {
+                GetAlleMobiler();
+                if (afd.Length > 0)
+                {
+                    for (int i = 0; i < alleMobiler.Count; i++)
+                    {
+                        if (alleMobiler[i].Afdeling == afd)
+                        {
+                            alleSog.Add(alleMobiler[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length > 0)
+                {
+                    for (int i = 0; i < alleMobiler.Count; i++)
+                    {
+                        if (alleMobiler[i].Ejer == ejer)
+                        {
+                            alleSog.Add(alleMobiler[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length == 0 && afd.Length == 0)
+                {
+                    for (int i = 0; i < alleMobiler.Count; i++)
+                    {
+                       alleSog.Add(alleMobiler[i]);
+                    }
+                }
+            }
+            if (pcer)
+            {
+                GetAllePcer();
+                if (afd.Length > 0)
+                {
+                    for (int i = 0; i < allePC.Count; i++)
+                    {
+                        if (allePC[i].Afdeling == afd)
+                        {
+                            alleSog.Add(allePC[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length > 0)
+                {
+                    for (int i = 0; i < allePC.Count; i++)
+                    {
+                        if (allePC[i].Ejer == ejer)
+                        {
+                            alleSog.Add(allePC[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length == 0 && afd.Length == 0)
+                {
+                    for (int i = 0; i < allePC.Count; i++)
+                    {
+                        alleSog.Add(allePC[i]);
+                    }
+                }
+            }
+            if (pcdele)
+            {
+                GetAllePCDELE();
+                if (afd.Length > 0)
+                {
+                    for (int i = 0; i < allePcDele.Count; i++)
+                    {
+                        if (allePcDele[i].Afdeling == afd)
+                        {
+                            alleSog.Add(allePcDele[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length > 0)
+                {
+                    for (int i = 0; i < allePcDele.Count; i++)
+                    {
+                        if (allePcDele[i].Ejer == ejer)
+                        {
+                            alleSog.Add(allePcDele[i]);
+                        }
+
+                    }
+                }
+                if (ejer.Length == 0 && afd.Length == 0)
+                {
+                    for (int i = 0; i < allePcDele.Count; i++)
+                    {
+                        alleSog.Add(allePcDele[i]);
+                    }
+                }
+            }
+        }
+
+        internal void SletPc(string id) {
             for (int i = 0; i < alleItems.Count; i++)
             {
                 if (alleItems[i].Id == id)
@@ -403,7 +568,6 @@ namespace LagerSystem
 
             }
         }
-
         internal void SletMobil(string id, string text1, string text2, string text3, string text4, string text5, string text6, string text7, string text8, string text9)
         {
             for (int i = 0; i < alleItems.Count; i++)

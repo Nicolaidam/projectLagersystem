@@ -38,6 +38,9 @@ namespace LagerSystem
                 Add("PC");
             combo.Items.
                 Add("PC-dele");
+            mobiltjek.IsChecked = true;
+            pcchek.IsChecked = true;
+            pcdeleChek.IsChecked = true;
            Logik.Instance.LoadItems();
            dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             dataGridv2.IsReadOnly = true;
@@ -127,38 +130,7 @@ namespace LagerSystem
 
        
 
-            
-
-        private void mobiltjek_Click(object sender, RoutedEventArgs e)
-        {
-            if (mobiltjek.IsChecked == true)
-            {
-                MessageBox.Show("Der vises kun mobiler!");
-                Logik.Instance.GetAlleMobiler();
-                dataGridv2.ItemsSource = Logik.Instance.AlleMobiler;
-            }
-            if (mobiltjek.IsChecked == false)
-            {
-                MessageBox.Show("Alt vises igen!");
-                dataGridv2.ItemsSource = Logik.Instance.AlleItems;
-            }
-           
-        }
-
-        private void pcchek_Click(object sender, RoutedEventArgs e)
-        {
-            if (pcchek.IsChecked == true)
-            {
-                MessageBox.Show("Der vises kun PC'er!");
-                Logik.Instance.GetAllePcer();
-                dataGridv2.ItemsSource = Logik.Instance.AllePCs;
-            }
-            if (pcchek.IsChecked == false)
-            {
-                MessageBox.Show("Alt vises igen!");
-                dataGridv2.ItemsSource = Logik.Instance.AlleItems;
-            }
-        }
+        
 
         private void TextBlock_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
@@ -272,13 +244,13 @@ namespace LagerSystem
             if (customer.Id.Contains("m"))
             {
                 Mobil mob = (Mobil)dataGridv2.SelectedItem;
-                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
+                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, afd.Text, ejer.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
                
             }
             if (customer.Id.Contains("p"))
             {
                 PC pc = (PC)dataGridv2.SelectedItem;
-                Logik.Instance.OpdaterPc(pc.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), mcA.Text, Processor.Text, grafikkort.Text);
+                Logik.Instance.OpdaterPc(pc.Id, Note.Text, lokation.Text,  afd.Text, ejer.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), mcA.Text, Processor.Text, grafikkort.Text);
             }
             if (customer.Id.Contains("d"))
             {
@@ -317,5 +289,26 @@ namespace LagerSystem
             slet.IsEnabled = false;
             RydTekstFelter();
         }
+
+        private void sog_Click(object sender, RoutedEventArgs e)
+        {
+            bool mobilBool = mobiltjek.IsChecked.HasValue ? mobiltjek.IsChecked.Value : false;
+            bool pcBool = pcchek.IsChecked.HasValue ? pcchek.IsChecked.Value : false;
+            bool pcDelBool = pcdeleChek.IsChecked.HasValue ? pcdeleChek.IsChecked.Value : false;
+            MessageBox.Show("mobilBool: " + mobilBool);
+            MessageBox.Show("pcBool: " + pcBool);
+            MessageBox.Show("pcDelBool: " + pcDelBool);
+            MessageBox.Show("Længden af afd: " + sogAfd.Text.Length);
+            MessageBox.Show("Længden af Ejer: " + sogEjer.Text.Length);
+            Logik.Instance.Sog(mobilBool, pcBool, pcDelBool, sogAfd.Text, sogEjer.Text);
+            // til at give itemsource 
+            dataGridv2.ItemsSource = Logik.Instance.AlleSog;
+            if(mobilBool && pcBool && pcDelBool && sogEjer.Text.Length == 0 && sogAfd.Text.Length == 0)
+            {
+                dataGridv2.ItemsSource = Logik.Instance.AlleItems;
+            }
+        }
+
+        
     }
 }
