@@ -255,7 +255,7 @@ namespace LagerSystem
             if (customer.Id.Contains("d"))
             {
                 PCDele pcdel = (PCDele)dataGridv2.SelectedItem;
-                Logik.Instance.OpdaterPcDele(pcdel.Id, Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text));
+                Logik.Instance.OpdaterPcDele(pcdel.Id, Note.Text, lokation.Text, afd.Text, ejer.Text,  maerke.Text, model.Text, Int32.Parse(Pris.Text));
             }
             dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             aendre.IsEnabled = false;
