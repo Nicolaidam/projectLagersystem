@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LagerSystem.Model
 {
-    class Item : INotifyPropertyChanged
+    class Item 
     {
         private String id;
         private String note;
@@ -41,6 +41,5 @@ namespace LagerSystem.Model
         public int Pris { get => pris; set => pris = value; }
         
 
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
+        }
 }
