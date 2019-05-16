@@ -244,7 +244,7 @@ namespace LagerSystem
             if (customer.Id.Contains("m"))
             {
                 Mobil mob = (Mobil)dataGridv2.SelectedItem;
-                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, afd.Text, ejer.Text, maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
+                Logik.Instance.OpdaterMobil(mob.Id, Note.Text, lokation.Text, ejer.Text, afd.Text,  maerke.Text, model.Text, Int32.Parse(Pris.Text), Int32.Parse(ram.Text), IMEI.Text);
                
             }
             if (customer.Id.Contains("p"))
@@ -262,6 +262,14 @@ namespace LagerSystem
             fortryd.IsEnabled = false;
             slet.IsEnabled = false;
             RydTekstFelter();
+            SetBoolDeafult();
+        }
+
+        private void SetBoolDeafult()
+        {
+            mobiltjek.IsChecked = true;
+            pcchek.IsChecked = true;
+            pcdeleChek.IsChecked = true;
         }
 
         private void slet_Click(object sender, RoutedEventArgs e)
@@ -288,6 +296,9 @@ namespace LagerSystem
             fortryd.IsEnabled = false;
             slet.IsEnabled = false;
             RydTekstFelter();
+            mobiltjek.IsChecked = true;
+            pcchek.IsChecked = true;
+            pcdeleChek.IsChecked = true;
         }
 
         private void sog_Click(object sender, RoutedEventArgs e)
