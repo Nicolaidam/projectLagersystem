@@ -15,16 +15,16 @@ namespace LagerSystem
 {
     class Logik
     {
-        IMobilDao mobilDao = new MobilDaoImpl();
-        IPCDao pcDao = new PCDaoImpl();
-        IPCDeleDao pcDeleDao = new PCDeleDaoImpl();
-        IBrugerDao brugerDao = new BrugerDaoImpl();
-        ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
-        ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
-        ObservableCollection<Item> alleMedAfd = new ObservableCollection<Item>();
-        ObservableCollection<Item> alleSog = new ObservableCollection<Item>();
-        ObservableCollection<PC> allePC = new ObservableCollection<PC>();
-        ObservableCollection<PCDele> allePcDele = new ObservableCollection<PCDele>();
+        private IMobilDao mobilDao = new MobilDaoImpl();
+        private IPCDao pcDao = new PCDaoImpl();
+        private IPCDeleDao pcDeleDao = new PCDeleDaoImpl();
+        private IBrugerDao brugerDao = new BrugerDaoImpl();
+        private ObservableCollection<Item> alleItems = new ObservableCollection<Item>();
+        private ObservableCollection<Mobil> alleMobiler = new ObservableCollection<Mobil>();
+        private ObservableCollection<Item> alleMedAfd = new ObservableCollection<Item>();
+        private ObservableCollection<Item> alleSog = new ObservableCollection<Item>();
+        private ObservableCollection<PC> allePC = new ObservableCollection<PC>();
+        private ObservableCollection<PCDele> allePcDele = new ObservableCollection<PCDele>();
         private static Logik instance;
 
         private Logik() { }

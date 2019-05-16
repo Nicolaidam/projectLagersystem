@@ -45,19 +45,13 @@ namespace LagerSystem
            dataGridv2.ItemsSource = Logik.Instance.AlleItems;
             dataGridv2.IsReadOnly = true;
 
-
-
-
-
         }
-
-
-
+    
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             opretknap.IsEnabled = true;
             //mobil
-            if(combo.SelectedIndex == 0)
+            if (combo.SelectedIndex == 0)
             {
                 afd.IsEnabled = true;
                 maerke.IsEnabled = true;
@@ -71,7 +65,6 @@ namespace LagerSystem
                 mcA.IsEnabled = false;
                 grafikkort.IsEnabled = false;
                 Processor.IsEnabled = false;
-               // MessageBox.Show("Du trykkede på indeks 1");
             }
             //pc
             if (combo.SelectedIndex == 1)
@@ -88,7 +81,6 @@ namespace LagerSystem
                 mcA.IsEnabled = true;
                 grafikkort.IsEnabled = true;
                 Processor.IsEnabled = true;
-                // MessageBox.Show("Du trykkede på indeks 1");
             }
             //pc dele
             if (combo.SelectedIndex == 2)
@@ -105,7 +97,6 @@ namespace LagerSystem
                 mcA.IsEnabled = false;
                 grafikkort.IsEnabled = false;
                 Processor.IsEnabled = false;
-                // MessageBox.Show("Du trykkede på indeks 1");
             }
             //andet
             if (combo.SelectedIndex == 3)
@@ -122,21 +113,8 @@ namespace LagerSystem
                 mcA.IsEnabled = false;
                 grafikkort.IsEnabled = false;
                 Processor.IsEnabled = false;
-                // MessageBox.Show("Du trykkede på indeks 1");
             }
-
-
         }
-
-       
-
-        
-
-        private void TextBlock_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
-        {
-           // myDataGrid.se
-        }
-
        
         private void dataGridv2_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -145,15 +123,15 @@ namespace LagerSystem
                 aendre.IsEnabled = true;
                 slet.IsEnabled = true;
                 fortryd.IsEnabled = true;
-                Item customer = (Item)dataGridv2.SelectedItem;
-                if (customer.Id.Contains("m"))
+                Item item = (Item)dataGridv2.SelectedItem;
+                if (item.Id.Contains("m"))
                 {
                     Mobil mob = (Mobil)dataGridv2.SelectedItem;
                     IMEI.Text = mob.Imei;
                     ram.Text = mob.Ram.ToString();
 
                 }
-                if (customer.Id.Contains("p"))
+                if (item.Id.Contains("p"))
                 {
                     PC pc = (PC)dataGridv2.SelectedItem;
                     ram.Text = Convert.ToString(pc.Ram);
@@ -161,14 +139,14 @@ namespace LagerSystem
                     Processor.Text = pc.Processor;
                     grafikkort.Text = pc.Grafikkort;
                 }
-                MessageBox.Show("Ejer: " + customer.Ejer);
-                afd.Text = customer.Afdeling;
-                ejer.Text = customer.Ejer;
-                maerke.Text = customer.Maerke;
-                model.Text = customer.Model;
-                Pris.Text = customer.Pris.ToString();
-                lokation.Text = customer.Lokation;
-                Note.Text = customer.Note;
+             
+                afd.Text = item.Afdeling;
+                ejer.Text = item.Ejer;
+                maerke.Text = item.Maerke;
+                model.Text = item.Model;
+                Pris.Text = item.Pris.ToString();
+                lokation.Text = item.Lokation;
+                Note.Text = item.Note;
             }
             
         }
@@ -191,22 +169,18 @@ namespace LagerSystem
                 mo.Imei = IMEI.Text;
                 mo.Ram = Int32.Parse(ram.Text);
                 Logik.Instance.addMobil(mo);
-
-
-                //Logik.Instance.addMobil(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Pris.Text, IMEI.Text, ram.Text);
-                MessageBox.Show("Mobil tilføjet!!!");
             }
             //pc
             if (combo.SelectedIndex == 1)
             {
                 Logik.Instance.addPc(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Convert.ToInt32(Pris.Text), mcA.Text, Convert.ToInt32(ram.Text), Processor.Text, grafikkort.Text);
-                MessageBox.Show("PC tilføjet!!!");
+               
             }
             //pc dele
             if (combo.SelectedIndex == 2)
             {
                 Logik.Instance.addPcDel(Note.Text, lokation.Text, ejer.Text, afd.Text, maerke.Text, model.Text, Convert.ToInt32(Pris.Text));
-                MessageBox.Show("PC-del tilføjet!!!");
+               
             }
 
             RydTekstFelter();
@@ -306,11 +280,6 @@ namespace LagerSystem
             bool mobilBool = mobiltjek.IsChecked.HasValue ? mobiltjek.IsChecked.Value : false;
             bool pcBool = pcchek.IsChecked.HasValue ? pcchek.IsChecked.Value : false;
             bool pcDelBool = pcdeleChek.IsChecked.HasValue ? pcdeleChek.IsChecked.Value : false;
-            MessageBox.Show("mobilBool: " + mobilBool);
-            MessageBox.Show("pcBool: " + pcBool);
-            MessageBox.Show("pcDelBool: " + pcDelBool);
-            MessageBox.Show("Længden af afd: " + sogAfd.Text.Length);
-            MessageBox.Show("Længden af Ejer: " + sogEjer.Text.Length);
             Logik.Instance.Sog(mobilBool, pcBool, pcDelBool, sogAfd.Text, sogEjer.Text);
             // til at give itemsource 
             dataGridv2.ItemsSource = Logik.Instance.AlleSog;
